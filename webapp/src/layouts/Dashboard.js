@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${(props) => props.theme.palette.background.default};
+    background: ${(props) => props.theme.palette.background.paper};
   }
 
   .MuiCardHeader-action .MuiIconButton-root {
@@ -62,6 +62,8 @@ const Paper = styled(MuiPaper)(spacing)
 const MainContent = styled(Paper)`
   flex: 1;
   background: ${(props) => props.theme.palette.background.default};
+  border-radius: ${(props) =>
+    `${props.theme.spacing(2)}px ${props.theme.spacing(2)}px 0px 0px`};
 
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     flex: none;

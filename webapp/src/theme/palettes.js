@@ -1,72 +1,37 @@
-import { blue, green, grey } from '@material-ui/core/colors'
-
 export const lightPalette = {
   background: {
     paper: '#fff',
     default: 'rgb(247, 249, 252)'
   },
   primary: {
-    light: blue[50],
-    main: blue[700],
-    dark: blue.A700,
+    light: '#35baf6',
+    main: '#03a9f4',
+    dark: '#0276aa',
     contrastText: '#fff'
   },
   secondary: {
-    light: grey[50],
-    main: grey[700],
-    dark: grey.A700,
-    contrastText: grey[700]
+    light: '#5393ff',
+    main: '#2979ff',
+    dark: '#1c54b2',
+    contrastText: '#fff'
   }
 }
 
 export const darkPalette = {
-  name: 'Dark',
-  palette: {
-    primary: {
-      main: blue[700],
-      contrastText: '#FFF'
-    },
-    secondary: {
-      main: blue[500],
-      contrastText: '#FFF'
-    }
+  background: {
+    paper: '#212121',
+    default: '#fff'
   },
-  header: {
-    color: grey[500],
-    background: '#FFFFFF',
-    search: {
-      color: grey[800]
-    },
-    indicator: {
-      background: blue[600]
-    }
+  primary: {
+    light: '#e0e0e0',
+    main: '#9e9e9e',
+    dark: '#424242',
+    contrastText: '#fff'
   },
-  sidebar: {
-    color: grey[200],
-    background: '#1B2430',
-    header: {
-      color: grey[200],
-      background: '#232f3e',
-      brand: {
-        color: blue[500]
-      }
-    },
-    footer: {
-      color: grey[200],
-      background: '#232f3e',
-      online: {
-        background: green[500]
-      }
-    },
-    category: {
-      fontWeight: 400
-    },
-    badge: {
-      color: '#FFF',
-      background: blue[500]
-    }
-  },
-  body: {
-    background: '#F7F9FC'
+  secondary: {
+    light: '#6573c3',
+    main: '#3f51b5',
+    dark: '#2c387e',
+    contrastText: '#fff'
   }
 }
