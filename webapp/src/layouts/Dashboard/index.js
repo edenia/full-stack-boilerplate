@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/styles'
 import styled, { createGlobalStyle } from 'styled-components'
 import { spacing } from '@material-ui/system'
 import Hidden from '@material-ui/core/Hidden'
@@ -11,13 +12,17 @@ import { isWidthUp } from '@material-ui/core/withWidth'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
-import Sidebar from '../components/Sidebar'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import PageTitle from '../components/PageTitle'
-import { mainConfig } from '../config'
+import Sidebar from '../../components/Sidebar'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import PageTitle from '../../components/PageTitle'
+import { mainConfig } from '../../config'
+
+import styles from './styles'
 
 const drawerWidth = 260
+
+const useStyles = makeStyles((theme) => styles(theme, drawerWidth))
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -37,83 +42,11 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Root = styled.div`
-  display: flex;
-  min-height: 100vh;
-`
-
-const Drawer = styled.div`
-  ${(props) => props.theme.breakpoints.up('md')} {
-    width: ${drawerWidth}px;
-    flex-shrink: 0;
-  }
-`
-
-const AppContent = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  max-width: 100%;
-  overflow: hidden;
-`
-
 const Paper = styled(MuiPaper)(spacing)
-
-const MainContent = styled(Paper)`
-  flex: 1;
-  background: ${(props) => props.theme.palette.background.default};
-  border-radius: ${(props) =>
-    `${props.theme.spacing(2)}px ${props.theme.spacing(2)}px 0px 0px`};
-
-  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    flex: none;
-  }
-
-  .MuiPaper-root .MuiPaper-root {
-    box-shadow: none;
-  }
-`
-
-const SubHeader = styled(Box)`
-  display: flex;
-  flex-direction: column-reverse;
-  margin-bottom: ${(props) => props.theme.spacing(2)}px;
-  padding-bottom: ${(props) => props.theme.spacing(2)}px;
-  border-bottom: 1px solid #e0e0e0;
-  width: 100%;
-  h3 {
-    margin-top: ${(props) => props.theme.spacing(2)}px;
-  }
-  ${(props) => props.theme.breakpoints.up('sm')} {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    h3 {
-      margin-top: 0;
-    }
-  }
-`
-
-const Network = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: ${(props) => props.theme.palette.primary.main};
-  img {
-    width: 56px;
-    height: 56px;
-    border-radius: 100%;
-    padding: ${(props) => props.theme.spacing(1)}px;
-    background-color: ${(props) => props.theme.palette.primary.contrastText};
-  }
-  border-radius: 8px 16px 16px 8px;
-  padding-left: 24px;
-  min-width: 220px;
-  color: ${(props) => props.theme.palette.primary.contrastText};
-`
 
 const Dashboard = ({ children, width, ual, theme, onThemeChange }) => {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const classes = useStyles()
   const { t } = useTranslation('routes')
   const location = useLocation()
 
@@ -122,11 +55,11 @@ const Dashboard = ({ children, width, ual, theme, onThemeChange }) => {
   }
 
   return (
-    <Root>
+    <div className={classes.root}>
       <CssBaseline />
       <GlobalStyle />
       <PageTitle title={t(`${location.pathname}>title`, mainConfig.title)} />
-      <Drawer>
+      <div className={classes.drawer}>
         <Hidden mdUp implementation="js">
           <Sidebar
             PaperProps={{ style: { width: drawerWidth } }}
@@ -138,20 +71,23 @@ const Dashboard = ({ children, width, ual, theme, onThemeChange }) => {
         <Hidden smDown implementation="css">
           <Sidebar PaperProps={{ style: { width: drawerWidth } }} />
         </Hidden>
-      </Drawer>
-      <AppContent>
+      </div>
+      <div className={classes.appContent}>
         <Header
           onDrawerToggle={handleDrawerToggle}
           ual={ual}
           theme={theme}
           onThemeChange={onThemeChange}
         />
-        <MainContent p={isWidthUp('lg', width) ? 6 : 4}>
-          <SubHeader>
+        <Paper
+          className={classes.mainContent}
+          p={isWidthUp('lg', width) ? 6 : 4}
+        >
+          <Box className={classes.subHeader}>
             <Typography variant="h3">
               {t(`${location.pathname}>heading`, '')}
             </Typography>
-            <Network>
+            <Box className={classes.network}>
               <Typography component="p" variant="h5">
                 {mainConfig.title}
               </Typography>
@@ -161,13 +97,13 @@ const Dashboard = ({ children, width, ual, theme, onThemeChange }) => {
                 width="56px"
                 height="56px"
               />
-            </Network>
-          </SubHeader>
+            </Box>
+          </Box>
           {children}
-        </MainContent>
+        </Paper>
         <Footer />
-      </AppContent>
-    </Root>
+      </div>
+    </div>
   )
 }
 

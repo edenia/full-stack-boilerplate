@@ -3,4 +3,6 @@
 db_data
 wallet_data
 node_modules
-modules
+modules 
+tmp/
+node_modules

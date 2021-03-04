@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import styled, { withTheme } from 'styled-components'
+import { makeStyles } from '@material-ui/styles'
+import { withTheme } from 'styled-components'
 import Grid from '@material-ui/core/Grid'
 import Hidden from '@material-ui/core/Hidden'
 import Menu from '@material-ui/core/Menu'
@@ -18,31 +19,9 @@ import ExitIcon from '@material-ui/icons/ExitToApp'
 import { Sun as SunIcon, Moon as MoonIcon } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 
-const AppBar = styled(MuiAppBar)`
-  background-color: ${(props) => props.theme.palette.background.paper};
-  color: ${(props) =>
-    props.theme.palette.getContrastText(props.theme.palette.background.paper)};
-  box-shadow: ${(props) => props.theme.shadows[1]};
-`
+import styles from './styles'
 
-const IconButton = styled(MuiIconButton)`
-  svg {
-    width: 22px;
-    height: 22px;
-  }
-`
-
-const UserBox = styled(Box)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  button {
-    color: ${(props) =>
-      props.theme.palette.getContrastText(
-        props.theme.palette.background.paper
-      )};
-  }
-`
+const useStyles = makeStyles(styles)
 
 const languages = [
   {
@@ -136,41 +115,46 @@ UserMenu.propTypes = {
   ual: PropTypes.any
 }
 
-const Header = ({ ual, theme, onThemeChange, onDrawerToggle }) => (
-  <AppBar position="sticky" elevation={0}>
-    <Toolbar>
-      <Grid container alignItems="center">
-        <Hidden mdUp>
+const Header = ({ ual, theme, onThemeChange, onDrawerToggle }) => {
+  const classes = useStyles()
+  return (
+    <MuiAppBar className={classes.appBar} position="sticky" elevation={0}>
+      <Toolbar>
+        <Grid container alignItems="center">
+          <Hidden mdUp>
+            <Grid item>
+              <MuiIconButton
+                className={classes.iconButton}
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={onDrawerToggle}
+              >
+                <MenuIcon />
+              </MuiIconButton>
+            </Grid>
+          </Hidden>
+          <Grid item />
+          <Grid item xs />
           <Grid item>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={onDrawerToggle}
-            >
-              <MenuIcon />
-            </IconButton>
+            <Box className={classes.userBox}>
+              <MuiIconButton
+                className={classes.iconButton}
+                onClick={() =>
+                  onThemeChange(theme === 'light' ? 'dark' : 'light')
+                }
+              >
+                {theme === 'light' && <MoonIcon />}
+                {theme === 'dark' && <SunIcon />}
+              </MuiIconButton>
+              <LanguageMenu />
+              <UserMenu ual={ual} />
+            </Box>
           </Grid>
-        </Hidden>
-        <Grid item />
-        <Grid item xs />
-        <Grid item>
-          <UserBox>
-            <IconButton
-              onClick={() =>
-                onThemeChange(theme === 'light' ? 'dark' : 'light')
-              }
-            >
-              {theme === 'light' && <MoonIcon />}
-              {theme === 'dark' && <SunIcon />}
-            </IconButton>
-            <LanguageMenu />
-            <UserMenu ual={ual} />
-          </UserBox>
         </Grid>
-      </Grid>
-    </Toolbar>
-  </AppBar>
-)
+      </Toolbar>
+    </MuiAppBar>
+  )
+}
 
 Header.propTypes = {
   ual: PropTypes.any,
