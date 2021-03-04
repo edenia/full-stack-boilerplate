@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+/* eslint-disable react/display-name */
+import React, { useState, forwardRef } from 'react'
+import { makeStyles } from '@material-ui/styles'
 import PropTypes from 'prop-types'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import {
@@ -12,21 +14,24 @@ import {
   ListItemText,
   Typography
 } from '@material-ui/core'
-import styled from 'styled-components'
 import { darken } from 'polished'
 import { NavLink as RouterNavLink, withRouter } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 
-import { mainConfig } from '../config'
-import routes from '../routes'
+import { mainConfig } from '../../config'
+import routes from '../../routes'
 
-const NavLink = React.forwardRef((props, ref) => (
+import styles from './styles'
+
+const useStyles = makeStyles((theme) => styles(theme, darken))
+
+const NavLink = forwardRef((props, ref) => (
   <RouterNavLink innerRef={ref} {...props} />
 ))
 
-const ExternalLink = React.forwardRef(({ to, children, className }, ref) => (
+const ExternalLink = forwardRef(({ to, children, className }, ref) => (
   <a
     ref={ref}
     href={to}
@@ -44,141 +49,9 @@ ExternalLink.propTypes = {
   className: PropTypes.string
 }
 
-const Drawer = styled(MuiDrawer)`
-  border-right: 0;
-
-  > div {
-    border-right: 0;
-  }
-`
-
-const Scrollbar = styled(PerfectScrollbar)`
-  background-color: ${(props) => props.theme.palette.background.paper};
-`
-
-const List = styled(MuiList)`
-  background-color: ${(props) => props.theme.palette.background.paper};
-`
-
-const ListItem = styled(MuiListItem)`
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-`
-
-const Brand = styled(Box)`
-  font-size: ${(props) => props.theme.typography.h5.fontSize};
-  font-weight: ${(props) => props.theme.typography.fontWeightMedium};
-  background-color: ${(props) => props.theme.palette.background.paper};
-  font-family: ${(props) => props.theme.typography.fontFamily};
-  min-height: 56px;
-  padding: ${(props) => props.theme.spacing(2)}px;
-  cursor: default;
-  ${(props) => props.theme.breakpoints.up('sm')} {
-    min-height: 64px;
-  }
-`
-
 const DashboardIcon = () => (
   <img alt={mainConfig.title} src="/logo.png" width="200px" height="auto" />
 )
-
-const SidebarSection = styled(Typography)`
-  color: ${(props) =>
-    props.theme.palette.getContrastText(props.theme.palette.background.paper)};
-  padding: ${(props) => props.theme.spacing(2, 2, 1, 3)};
-  display: block;
-  font-weight: 600;
-`
-
-const Category = styled(ListItem)`
-  padding: ${(props) => props.theme.spacing(2, 3, 2, 3)};
-  display: flex;
-  flex-direction: row;
-  color: ${(props) =>
-    props.theme.palette.getContrastText(props.theme.palette.background.paper)};
-
-  svg {
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
-  }
-
-  svg,
-  .MuiListItemText-root {
-    opacity: 0.5;
-  }
-
-  &:hover,
-  &.${(props) => props.activeClassName} {
-    background-color: ${(props) =>
-      darken(0.05, props.theme.palette.background.paper)};
-    svg,
-    .MuiListItemText-root {
-      opacity: 1;
-    }
-  }
-`
-
-const CategoryText = styled(ListItemText)`
-  margin: 0;
-  font-size: ${(props) => props.theme.typography.body1.fontSize}px;
-  font-weight: ${(props) => props.theme.typography.fontWeightRegular};
-  padding: 0 ${(props) => props.theme.spacing(1)}px;
-`
-
-const CategoryIconLess = styled(ExpandLess)`
-  color: ${(props) =>
-    props.theme.palette.getContrastText(props.theme.palette.background.paper)};
-`
-
-const CategoryIconMore = styled(ExpandMore)`
-  color: ${(props) =>
-    props.theme.palette.getContrastText(props.theme.palette.background.paper)};
-`
-
-const Link = styled(Category)`
-  padding: ${(props) => props.theme.spacing(2, 0, 2, 5)};
-`
-
-const LinkText = styled(CategoryText)``
-
-const Badge = styled(Chip)`
-  font-size: 11px;
-  font-weight: ${(props) => props.theme.typography.fontWeightBold};
-  height: 20px;
-  background-color: ${(props) => props.theme.palette.primary.main};
-  span.MuiChip-label,
-  span.MuiChip-label:hover {
-    cursor: pointer;
-    color: ${(props) => props.theme.palette.primary.contrastText};
-    padding: ${(props) => props.theme.spacing(0, 1)};
-  }
-`
-
-const SidebarFooter = styled.div`
-  background-color: ${(props) => props.theme.palette.background.paper};
-  padding: ${(props) => props.theme.spacing(2)}px
-    ${(props) => props.theme.spacing(2)}px;
-  min-height: 61px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const SidebarFooterText = styled(Typography)`
-  color: ${(props) =>
-    props.theme.palette.getContrastText(props.theme.palette.background.paper)};
-`
-
-const SidebarFooterSubText = styled(Typography)`
-  color: ${(props) => props.theme.palette.primary.contrastText};
-  font-size: 0.725rem;
-  display: block;
-  padding: 1px;
-`
 
 const SidebarCategory = ({
   name,
@@ -190,18 +63,18 @@ const SidebarCategory = ({
   ...rest
 }) => {
   return (
-    <Category {...rest}>
+    <MuiListItem className={classes.category} {...rest}>
       {icon}
-      <CategoryText>{name}</CategoryText>
+      <ListItemText className={classes.categoryText}>{name}</ListItemText>
       {isCollapsable ? (
         isOpen ? (
-          <CategoryIconMore />
+          <ExpandMore className={classes.categoryIconMore} />
         ) : (
-          <CategoryIconLess />
+          <ExpandLess className={classes.categoryIconLess} />
         )
       ) : null}
-      {badge ? <Badge label={badge} /> : ''}
-    </Category>
+      {badge ? <Chip className={classes.chip} label={badge} /> : ''}
+    </MuiListItem>
   )
 }
 
@@ -214,8 +87,9 @@ SidebarCategory.propTypes = {
   badge: PropTypes.string
 }
 
-const SidebarLink = ({ name, icon, to, badge }) => (
-  <Link
+const SidebarLink = ({ classes, name, icon, to, badge }) => (
+  <MuiListItem
+    className={classes.link}
     button
     dense
     component={NavLink}
@@ -225,20 +99,22 @@ const SidebarLink = ({ name, icon, to, badge }) => (
     href={to}
   >
     {icon}
-    <LinkText>{name}</LinkText>
-    {badge ? <Badge label={badge} /> : ''}
-  </Link>
+    <ListItemText className={classes.categoryText}>{name}</ListItemText>
+    {badge ? <Chip className={classes.chip} label={badge} /> : ''}
+  </MuiListItem>
 )
 
 SidebarLink.propTypes = {
   icon: PropTypes.node,
   name: PropTypes.string,
   to: PropTypes.string,
-  badge: PropTypes.string
+  badge: PropTypes.string,
+  classes: PropTypes.any
 }
 
-const Sidebar = ({ classes, staticContext, location, ...rest }) => {
+const Sidebar = ({ style, staticContext, location, ...rest }) => {
   const { t } = useTranslation('routes')
+  const classes = useStyles()
   const initOpenRoutes = () => {
     /* Open collapse element that matches current url */
     const pathName = location.pathname
@@ -277,18 +153,20 @@ const Sidebar = ({ classes, staticContext, location, ...rest }) => {
   }
 
   return (
-    <Drawer variant="permanent" {...rest}>
-      <Brand>
+    <MuiDrawer className={classes.drawer} variant="permanent" {...rest}>
+      <Box className={classes.box}>
         <DashboardIcon />
-      </Brand>
-      <Scrollbar>
-        <List disablePadding>
+      </Box>
+      <PerfectScrollbar className={classes.scrollbar}>
+        <MuiList className={classes.list} disablePadding>
           {routes
             .filter(({ name }) => !!name)
             .map((category, index) => (
-              <ListItem key={index}>
+              <MuiListItem className={classes.listItem} key={index}>
                 {category.header ? (
-                  <SidebarSection>{t(category.header)}</SidebarSection>
+                  <Typography className={classes.sidebarSection}>
+                    {t(category.header)}
+                  </Typography>
                 ) : null}
 
                 {category.children ? (
@@ -314,6 +192,7 @@ const Sidebar = ({ classes, staticContext, location, ...rest }) => {
                           to={route.path}
                           icon={route.icon}
                           badge={route.badge}
+                          classes={classes}
                         />
                       ))}
                     </Collapse>
@@ -336,14 +215,17 @@ const Sidebar = ({ classes, staticContext, location, ...rest }) => {
                     badge={category.badge}
                   />
                 )}
-              </ListItem>
+              </MuiListItem>
             ))}
-        </List>
-      </Scrollbar>
-      <SidebarFooter>
+        </MuiList>
+      </PerfectScrollbar>
+      <div className={classes.sidebarFooter}>
         <Grid container spacing={2}>
           <Grid item>
-            <SidebarFooterText variant="body2">
+            <Typography
+              className={classes.sidebarFooterSubText}
+              variant="body2"
+            >
               {t('footerText')}{' '}
               <a
                 href="https://eoscostarica.io/"
@@ -352,17 +234,17 @@ const Sidebar = ({ classes, staticContext, location, ...rest }) => {
               >
                 EOS Costa Rica
               </a>
-            </SidebarFooterText>
-            <SidebarFooterSubText />
+            </Typography>
+            <Typography className={classes.sidebarFooterSubText} />
           </Grid>
         </Grid>
-      </SidebarFooter>
-    </Drawer>
+      </div>
+    </MuiDrawer>
   )
 }
 
 Sidebar.propTypes = {
-  classes: PropTypes.any,
+  style: PropTypes.any,
   staticContext: PropTypes.any,
   location: PropTypes.any
 }

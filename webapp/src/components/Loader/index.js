@@ -1,20 +1,18 @@
 import React from 'react'
-import styled from 'styled-components'
-
+import { makeStyles } from '@material-ui/styles'
 import { CircularProgress } from '@material-ui/core'
 
-const Root = styled.div`
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  min-height: 100%;
-`
+import styles from './styles'
+
+const useStyles = makeStyles(styles)
 
 const Loader = () => {
+  const classes = useStyles()
+
   return (
-    <Root>
+    <div className={classes.root}>
       <CircularProgress m={2} color="secondary" />
-    </Root>
+    </div>
   )
 }
 

@@ -5,12 +5,9 @@ import { useTranslation } from 'react-i18next'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 
-const useStyles = makeStyles((theme) => ({
-  title: {
-    marginBottom: theme.spacing(1),
-    fontWeight: 400
-  }
-}))
+import styles from './styles'
+
+const useStyles = makeStyles(styles)
 
 const About = () => {
   const classes = useStyles()
