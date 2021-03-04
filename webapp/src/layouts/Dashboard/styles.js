@@ -51,7 +51,7 @@ export default (theme, drawerWidth) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: theme.palette.primary.main,
-    img: {
+    '& img': {
       width: 56,
       height: 56,
       borderRadius: '100%',

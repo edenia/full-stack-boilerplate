@@ -172,6 +172,7 @@ const Sidebar = ({ style, staticContext, location, ...rest }) => {
                 {category.children ? (
                   <Box width="100%">
                     <SidebarCategory
+                      classes={classes}
                       isOpen={!openRoutes[index]}
                       name={t(`${category.path}>sidebar`)}
                       icon={category.icon}
@@ -199,6 +200,7 @@ const Sidebar = ({ style, staticContext, location, ...rest }) => {
                   </Box>
                 ) : (
                   <SidebarCategory
+                    classes={classes}
                     isCollapsable={false}
                     name={t(
                       category.path.includes('http')
