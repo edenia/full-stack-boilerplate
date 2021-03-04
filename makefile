@@ -7,8 +7,7 @@ run:
 	make -B wallet
 	make -B hapi
 	make -B hasura
-	make -B webapp
-	make -j 2 logs hasura-cli
+	make -B -j 3 hapi-logs hasura-cli webapp
 
 postgres:
 	@docker-compose stop postgres
@@ -25,6 +24,9 @@ hapi:
 	@docker-compose up -d --build hapi
 	@echo "done hapi"
 
+hapi-logs:
+	@docker-compose logs -f hapi
+
 hasura:
 	$(eval -include .env)
 	@until \
@@ -32,10 +34,9 @@ hasura:
 		do echo "$(BLUE)$(STAGE)-$(APP_NAME)-hasura |$(RESET) waiting for postgres service"; \
 		sleep 5; done;
 	@until \
-		curl http://localhost:9090/healthz; \
+		curl -s -o /dev/null -w 'hapi status %{http_code}\n' http://localhost:9090/healthz; \
 		do echo "$(BLUE)$(STAGE)-$(APP_NAME)-hasura |$(RESET) waiting for hapi service"; \
 		sleep 5; done;
-	@echo "..."
 	@docker-compose stop hasura
 	@docker-compose up -d --build hasura
 	@echo "done hasura"
@@ -43,25 +44,27 @@ hasura:
 hasura-cli:
 	$(eval -include .env)
 	@until \
-		curl http://localhost:8080/healthz; \
-		do echo "$(BLUE)$(STAGE)-$(APP_NAME)-hasura |$(RESET) ..."; \
+		curl -s -o /dev/null -w 'hasura status %{http_code}\n' http://localhost:8080/healthz; \
+		do echo "$(BLUE)$(STAGE)-$(APP_NAME)-hasura |$(RESET) waiting for hasura service"; \
 		sleep 5; done;
-	@echo "..."
+	@cd hasura && hasura seeds apply --admin-secret $(HASURA_GRAPHQL_ADMIN_SECRET) && echo "success!" || echo "failure!";
 	@cd hasura && hasura console --endpoint http://localhost:8080 --skip-update-check --no-browser --admin-secret $(HASURA_GRAPHQL_ADMIN_SECRET);
 
 webapp:
 	$(eval -include .env)
-	# @until \
-	# 	curl http://localhost:8080/healthz; \
-	# 	do echo "$(BLUE)$(STAGE)-$(APP_NAME)-webapp |$(RESET) waiting for hasura service"; \
-	# 	sleep 5; done;
-	# @echo "..."
-	@docker-compose stop webapp
-	@docker-compose up -d --build webapp
+	@until \
+		curl -s -o /dev/null -w 'hasura status %{http_code}\n' http://localhost:8080/healthz; \
+		do echo "$(BLUE)$(STAGE)-$(APP_NAME)-webapp |$(RESET) waiting for hasura service"; \
+		sleep 5; done;
+	@cd webapp && yarn && yarn start:local | cat
 	@echo "done webapp"
-
-logs:
-	@docker-compose logs -f hapi webapp
 
 stop:
 	@docker-compose stop
+
+clean:
+	@docker-compose stop
+	@rm -rf tmp/postgres
+	@rm -rf tmp/hapi
+	@rm -rf tmp/webapp
+	@docker system prune

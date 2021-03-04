@@ -6,14 +6,14 @@ services:
     ports:
       - '8888:8888'
     volumes:
-      - ${WALLET_DATA}:/opt/application/data
+      - ./tmp/wallet/:/opt/application/data/
   postgres:
     container_name: '${STAGE}-${APP_NAME}-postgres'
     image: postgres:11.5-alpine
     ports:
       - '5432:5432'
     volumes:
-      - ${POSTGRES_DATA}:/var/lib/postgresql/data
+      - ./tmp/postgres/:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: '${POSTGRES_USER}'
       POSTGRES_PASSWORD: '${POSTGRES_PASSWORD}'
@@ -24,7 +24,7 @@ services:
     ports:
       - '9090:9090'
     volumes:
-      - ./modules/hapi:/app/node_modules
+      - ./tmp/hapi/node_modules/:/app/node_modules/
       - type: bind
         source: ./hapi
         target: /app
@@ -60,7 +60,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./modules/webapp:/app/node_modules
+      - ./tmp/webapp/node_modules/:/app/node_modules/
       - type: bind
         source: ./webapp
         target: /app

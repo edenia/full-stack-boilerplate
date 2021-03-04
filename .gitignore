@@ -1,6 +1,4 @@
 .env*
 !.env.example
-db_data
-wallet_data
+tmp/
 node_modules
-modules
