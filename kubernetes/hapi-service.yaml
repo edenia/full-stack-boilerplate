@@ -6,8 +6,8 @@ metadata:
   name: boilerplate-hapi
 spec:
   ports:
-    - name: hapi
-      port: 9090
-      targetPort: 9090
+  - name: hapi
+    port: 9090
+    targetPort: 9090
   selector:
     app: boilerplate-hapi
