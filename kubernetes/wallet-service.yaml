@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: wallet
-  name: wallet
+    app: boilerplate-wallet
+  name: boilerplate-wallet
 spec:
   ports:
-    - name: wallet
-      port: 8888
-      targetPort: 8888
+  - name: boilerplate-wallet
+    port: 8888
+    targetPort: 8888
   selector:
-    app: wallet
+    app: boilerplate-wallet

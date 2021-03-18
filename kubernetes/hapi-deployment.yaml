@@ -17,23 +17,13 @@ spec:
         app: boilerplate-hapi
     spec:
       imagePullSecrets:
-        - name: regcred
+          - name: regcred
       containers:
-        - image: eoscostarica506/boilerplate-hapi
-          imagePullPolicy: 'Always'
-          name: 'boilerplate-hapi'
-          envFrom:
-            - configMapRef:
-                name: boilerplate-hapi-config
-          ports:
-            - containerPort: 9090
-          volumeMounts:
-            - mountPath: /usr/app
-              name: hapi
-              subPathExpr: $(CODE_DIRECTORY)
-      restartPolicy: Always
-      volumes:
-        - name: hapi
-          nfs:
-            server: nfs-server-new
-            path: /home/ubuntu/
+      - image: ${DOCKER_REGISTRY}/${IMAGE_NAME_HAPI}:${VERSION}
+        imagePullPolicy: "Always"
+        name: "boilerplate-hapi"
+        envFrom:
+        - configMapRef:
+            name: boilerplate-hapi-config
+        ports:
+        - containerPort: 9090
