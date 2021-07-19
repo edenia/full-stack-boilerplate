@@ -3,7 +3,7 @@ name: Build images from latest dev branch
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   create-dev-image:
