@@ -35,7 +35,7 @@ jobs:
           REACT_APP_TAG: ${{ github.ref }}
           REACT_APP_NAME: 'eoscr_boilerplate'
           REACT_APP_TITLE: 'Fullstack Boilerplate'
-          REACT_APP_LOGO: 'https://raw.githubusercontent.com/eoscostarica/proton-affiliate/main/docs/img/proton-xpr-logo.png'
+          REACT_APP_LOGO: 'https://raw.githubusercontent.com/eoscostarica/design-assets/master/logos/eosCR/fullColor-vertiall-transparent-white.png'
           REACT_APP_FOOTER_LINKS: '[]'
           REACT_APP_UAL_APP_NAME: 'Full-Stack Boilerplate'
           REACT_APP_UAL_API_PROTOCOL: 'https'
@@ -64,8 +64,8 @@ jobs:
           HAPI_SERVER_ADDRESS: 0.0.0.0
           HAPI_NETWORK_API: 'https://jungle.eosio.cr'
           HAPI_NETWORK_CHAIN_ID: '2a02a0053e5a8cf73a56ba0fda11e4d92e0238a4a2aa74fccf46d5a910746840'
-          HAPI_NETWORK_BASE_ACCOUNT: ${{ secrets.HAPI_NETWORK_CREATOR_ACCOUNT }}
-          HAPI_NETWORK_BASE_PASSWORD: ${{ secrets.HAPI_NETWORK_CREATOR_PASSWORD }}
+          HAPI_NETWORK_BASE_ACCOUNT: ${{ secrets.HAPI_NETWORK_BASE_ACCOUNT }}
+          HAPI_NETWORK_BASE_PASSWORD: ${{ secrets.HAPI_NETWORK_BASE_PASSWORD }}
           HAPI_NETWORK_WALLET_URL: ${{ secrets.HAPI_NETWORK_WALLET }}
           HAPI_HASURA_URL: ${{ secrets.HAPI_HASURA_URL }}
           HAPI_HASURA_ADMIN_SECRET: ${{ secrets.HAPI_HASURA_ADMIN_SECRET }}
