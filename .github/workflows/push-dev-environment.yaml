@@ -18,8 +18,8 @@ jobs:
 
       - name: Log in to docker registry
         run: |
-          echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login \
-            --username ${{ secrets.DOCKER_HUB_USER }} \
+          echo ${{ secrets.DOCKER_PASSWORD}} | docker login \
+            --username ${{ secrets.DOCKER_USERNAME }} \
             --password-stdin
 
       - name: Build new images and push
@@ -28,8 +28,8 @@ jobs:
             build-docker-images \
             push-docker-images
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USER }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           # webapp
           PORT: 80
           REACT_APP_TAG: ${{ github.ref }}
