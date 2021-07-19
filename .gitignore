@@ -2,6 +2,9 @@
 !.env.example
 node_modules
 tmp/
+*.key
+*.pass
+build_k8s
 
 # yarn
 .yarn/*
