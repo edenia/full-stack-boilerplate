@@ -1,14 +1,14 @@
-name: Build images from latest dev branch
+name: Build images from latest master branch
 
 on:
   push:
-    branches:
-      - dev
+    tags:
+      - v*
 
 jobs:
-  create-dev-image:
+  create-prod-image:
     runs-on: ubuntu-latest
-    environment: development
+    environment: production
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v1
@@ -18,7 +18,7 @@ jobs:
 
       - name: Log in to docker registry
         run: |
-          echo ${{ secrets.DOCKER_PASSWORD}} | docker login \
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login \
             --username ${{ secrets.DOCKER_USERNAME }} \
             --password-stdin
 
@@ -33,16 +33,17 @@ jobs:
           # webapp
           PORT: 80
           REACT_APP_TAG: ${{ github.ref }}
+          REACT_APP_VERSION: ${{ github.ref }}
           REACT_APP_NAME: 'eoscr_boilerplate'
-          REACT_APP_TITLE: 'Fullstack Boilerplate'
+          REACT_APP_TITLE: 'Full-Stack Boilerplate'
           REACT_APP_LOGO: 'https://raw.githubusercontent.com/eoscostarica/design-assets/master/logos/eosCR/fullColor-vertiall-transparent-white.png'
           REACT_APP_FOOTER_LINKS: '[]'
           REACT_APP_UAL_APP_NAME: 'Full-Stack Boilerplate'
           REACT_APP_UAL_API_PROTOCOL: 'https'
-          REACT_APP_UAL_API_HOST: 'boilerplate.eosio.cr'
+          REACT_APP_UAL_API_HOST: 'jungle.eosio.cr'
           REACT_APP_UAL_API_PORT: '443'
           REACT_APP_UAL_CHAIN_ID: '2a02a0053e5a8cf73a56ba0fda11e4d92e0238a4a2aa74fccf46d5a910746840'
-          REACT_APP_HASURA_URL: https://graphql-dev.earnproton.com/v1/graphql
+          REACT_APP_HASURA_URL: ${{ secrets.REACT_APP_HASURA_URL }}
 
       - name: Build kubernetes files
         id: build_kubernetes_files
@@ -85,3 +86,10 @@ jobs:
           K8S_BUILD_DIR: build_k8s
         with:
           args: version && make deploy-kubernetes
+
+      - name: Create Release
+        id: create_release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true

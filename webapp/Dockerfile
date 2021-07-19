@@ -1,6 +1,7 @@
 FROM node:12.16.2-alpine  as build-stage
 
-ARG port
+ARG react_app_tag
+ARG react_app_name
 ARG react_app_title
 ARG react_app_logo
 ARG react_app_footer_links
@@ -15,7 +16,8 @@ ENV WORK_DIR /usr/src/app
 ENV PATH $WORK_DIR/node_modules/.bin:$PATH
 ENV NODE_ENV production
 ENV NODE_PATH ./src
-ENV PORT $port
+ENV REACT_APP_TAG $react_app_tag
+ENV REACT_APP_NAME $react_app_name
 ENV REACT_APP_TITLE $react_app_title
 ENV REACT_APP_LOGO $react_app_logo
 ENV REACT_APP_FOOTER_LINKS $react_app_footer_links
@@ -32,7 +34,7 @@ WORKDIR $WORK_DIR
 COPY package.json $WORK_DIR/package.json
 COPY yarn.lock $WORK_DIR/yarn.lock
 
-RUN yarn install --frozen-lockfile --production=true
+RUN yarn install --production=true
 
 COPY ./ $WORK_DIR
 

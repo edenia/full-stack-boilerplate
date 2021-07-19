@@ -1,15 +1,15 @@
 version: '3.6'
 services:
   wallet:
-    container_name: '${STAGE}-${APP_NAME}-wallet'
+    container_name: 'boilerplate-wallet'
     build: ./wallet
     ports:
       - '8888:8888'
     volumes:
       - ./tmp/wallet/:/opt/application/data/
   postgres:
-    container_name: '${STAGE}-${APP_NAME}-postgres'
-    image: postgres:11.5-alpine
+    container_name: 'boilerplate-postgres'
+    image: postgres:13.3-alpine
     ports:
       - '5432:5432'
     volumes:
@@ -19,7 +19,7 @@ services:
       POSTGRES_PASSWORD: '${POSTGRES_PASSWORD}'
       POSTGRES_DB: '${POSTGRES_DB}'
   hapi:
-    container_name: '${STAGE}-${APP_NAME}-hapi'
+    container_name: 'boilerplate-hapi'
     image: node:14.2.0
     ports:
       - '9090:9090'
@@ -33,16 +33,16 @@ services:
     environment:
       HAPI_SERVER_PORT: '${HAPI_SERVER_PORT}'
       HAPI_SERVER_ADDRESS: '${HAPI_SERVER_ADDRESS}'
-      HAPI_EOS_API_ENDPOINT: '${HAPI_EOS_API_ENDPOINT}'
-      HAPI_EOS_API_CHAIN_ID: '${HAPI_EOS_API_CHAIN_ID}'
-      HAPI_EOS_BASE_ACCOUNT: '${HAPI_EOS_BASE_ACCOUNT}'
-      HAPI_EOS_BASE_ACCOUNT_PASSWORD: '${HAPI_EOS_BASE_ACCOUNT_PASSWORD}'
-      HAPI_EOS_WALLET_URL: '${HAPI_EOS_WALLET_URL}'
+      HAPI_NETWORK_API: '${HAPI_NETWORK_API}'
+      HAPI_NETWORK_CHAIN_ID: '${HAPI_NETWORK_CHAIN_ID}'
+      HAPI_NETWORK_BASE_ACCOUNT: '${HAPI_NETWORK_BASE_ACCOUNT}'
+      HAPI_NETWORK_BASE_PASSWORD: '${HAPI_NETWORK_BASE_PASSWORD}'
+      HAPI_NETWORK_WALLET_URL: '${HAPI_NETWORK_WALLET_URL}'
       HAPI_HASURA_URL: '${HAPI_HASURA_URL}'
       HAPI_HASURA_ADMIN_SECRET: '${HAPI_HASURA_ADMIN_SECRET}'
   hasura:
-    container_name: '${STAGE}-${APP_NAME}-hasura'
-    image: hasura/graphql-engine:v1.3.3.cli-migrations-v2
+    container_name: 'boilerplate-hasura'
+    image: hasura/graphql-engine:v2.0.2.cli-migrations-v2
     ports:
       - '8080:8080'
     volumes:
@@ -55,7 +55,7 @@ services:
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: '${HASURA_GRAPHQL_UNAUTHORIZED_ROLE}'
       HASURA_GRAPHQL_ACTION_BASE_URL: '${HASURA_GRAPHQL_ACTION_BASE_URL}'
   webapp:
-    container_name: '${STAGE}-${APP_NAME}-webapp'
+    container_name: 'boilerplate-webapp'
     image: node:14.2.0
     stdin_open: true
     ports:
@@ -77,3 +77,4 @@ services:
       REACT_APP_UAL_API_PORT: '${REACT_APP_UAL_API_PORT}'
       REACT_APP_UAL_CHAIN_ID: '${REACT_APP_UAL_CHAIN_ID}'
       REACT_APP_HASURA_URL: '${REACT_APP_HASURA_URL}'
+      REACT_APP_TAG: '${REACT_APP_TAG}'

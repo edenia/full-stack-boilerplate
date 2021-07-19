@@ -2,43 +2,43 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   labels:
-    app: boilerplate-postgres
+    app: postgres
     version: ${VERSION}
-  name: boilerplate-postgres
+  name: postgres
 spec:
-  serviceName: boilerplate-postgres
+  serviceName: postgres
   replicas: 1
   selector:
     matchLabels:
-      app: boilerplate-postgres
+      app: postgres
       version: ${VERSION}
   template:
     metadata:
       labels:
-        app: boilerplate-postgres
+        app: postgres
         version: ${VERSION}
     spec:
       imagePullSecrets:
-          - name: regcred
+        - name: regcred
       containers:
-      - image: postgres:11.5-alpine
-        imagePullPolicy: "Always"
-        name: boilerplate-postgres
-        envFrom:
-        - configMapRef:
-            name: boilerplate-postgres-config
-        ports:
-        - containerPort: 5432
-        volumeMounts:
-        - mountPath: /var/lib/postgresql/data
+        - image: postgres:13.3-alpine
+          imagePullPolicy: 'Always'
           name: postgres
-          subPath: postgres
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres
+              subPath: postgres
   volumeClaimTemplates:
     - metadata:
         name: postgres
       spec:
-        accessModes: ["ReadWriteOnce"]
-        storageClassName: dashboard-storage
+        accessModes: ['ReadWriteOnce']
+        storageClassName: boilerplate-storage
         resources:
           requests:
             storage: 100Gi
