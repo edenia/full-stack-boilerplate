@@ -41,7 +41,7 @@ spec:
       volumes:
         - name: config-directory
           configMap:
-            name: dashboard-wallet-config
+            name: wallet-config
   volumeClaimTemplates:
     - metadata:
         name: data-directory
