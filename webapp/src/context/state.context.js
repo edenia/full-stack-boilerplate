@@ -13,7 +13,13 @@ const sharedStateReducer = (state, action) => {
     case 'ual':
       return {
         ...state,
-        user: action.ual?.activeUser
+        ual: action.ual
+      }
+
+    case 'userChange':
+      return {
+        ...state,
+        user: action.user
       }
 
     case 'set': {
@@ -59,8 +65,13 @@ export const SharedStateProvider = ({ children, ual, ...props }) => {
   const value = React.useMemo(() => [state, dispatch], [state])
 
   useEffect(() => {
-    dispatch({ type: 'ual', ual })
-  }, [ual])
+    const load = async () => {
+      dispatch({ type: 'userChange', user: ual.activeUser })
+      dispatch({ type: 'ual', ual })
+    }
+
+    load()
+  }, [ual?.activeUser])
 
   return (
     <SharedStateContext.Provider value={value} {...props}>
