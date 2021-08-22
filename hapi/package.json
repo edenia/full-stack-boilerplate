@@ -21,6 +21,7 @@
     "axios": "^0.21.1",
     "eosjs": "^22.1.0",
     "eosjs-api": "^7.0.4",
+    "graphql": "^15.5.1",
     "graphql-request": "^3.4.0",
     "http-status-codes": "^2.1.4",
     "joi": "^17.4.1",
