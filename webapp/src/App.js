@@ -1,9 +1,10 @@
 import React, { Suspense, useMemo } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import DateFnsUtils from '@date-io/date-fns'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import { ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import { StylesProvider, createGenerateClassName } from '@mui/styles'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
 
 import routes from './routes'
 import Loader from './components/Loader'
@@ -11,6 +12,10 @@ import DashboardLayout from './layouts/Dashboard'
 import { useSharedState } from './context/state.context'
 import getTheme from './theme'
 import './i18n'
+
+const generateClassName = createGenerateClassName({
+  productionPrefix: 'fullStack' // Change it for prefix project name.
+})
 
 const App = () => {
   const [state] = useSharedState()
@@ -35,16 +40,18 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <DashboardLayout routes={userRoutes.sidebar}>
-            <Suspense fallback={<Loader />}>
-              <Switch>{userRoutes.browser.map(renderRoute)}</Switch>
-            </Suspense>
-          </DashboardLayout>
-        </MuiPickersUtilsProvider>
-      </ThemeProvider>
+      <StylesProvider generateClassName={generateClassName}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DashboardLayout routes={userRoutes.sidebar}>
+              <Suspense fallback={<Loader />}>
+                <Switch>{userRoutes.browser.map(renderRoute)}</Switch>
+              </Suspense>
+            </DashboardLayout>
+          </LocalizationProvider>
+        </ThemeProvider>
+      </StylesProvider>
     </BrowserRouter>
   )
 }

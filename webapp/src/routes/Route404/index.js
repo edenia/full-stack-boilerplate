@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import { makeStyles } from '@mui/styles'
 import { Link } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
