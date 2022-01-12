@@ -33,6 +33,7 @@ const SwitchThemeModeButton = memo(({ useDarkMode, onSwitch }) => {
 
   return (
     <Button
+      color="secondary"
       startIcon={useDarkMode ? <SunIcon /> : <MoonIcon />}
       onClick={() => onSwitch(!useDarkMode)}
     >
@@ -72,7 +73,11 @@ const LanguageButton = memo(({ current, onChange }) => {
 
   return (
     <>
-      <Button startIcon={<LanguageIcon />} onClick={handleLanguajeMenuOpen}>
+      <Button
+        color="secondary"
+        startIcon={<LanguageIcon />}
+        onClick={handleLanguajeMenuOpen}
+      >
         {(current || '').toUpperCase()}
       </Button>
       <Menu
@@ -100,7 +105,13 @@ LanguageButton.propTypes = {
 }
 
 const UserButton = memo(({ user }) => (
-  <>{user && <Button startIcon={<AccountIcon />}>{user.accountName}</Button>}</>
+  <>
+    {user && (
+      <Button color="secondary" startIcon={<AccountIcon />}>
+        {user.accountName}
+      </Button>
+    )}
+  </>
 ))
 
 UserButton.displayName = 'UserButton'
@@ -115,12 +126,16 @@ const AuthButton = memo(({ user, onLogin, onSignOut }) => {
   return (
     <>
       {user && (
-        <Button startIcon={<ExitIcon />} onClick={onSignOut}>
+        <Button color="secondary" startIcon={<ExitIcon />} onClick={onSignOut}>
           {t('signOut')}
         </Button>
       )}
       {!user && (
-        <Button startIcon={<FingerprintIcon />} onClick={onLogin}>
+        <Button
+          color="secondary"
+          startIcon={<FingerprintIcon />}
+          onClick={onLogin}
+        >
           {t('login')}
         </Button>
       )}
