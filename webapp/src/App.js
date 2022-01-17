@@ -1,5 +1,5 @@
 import React, { Suspense, useMemo } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import { StylesProvider, createGenerateClassName } from '@mui/styles'
@@ -25,9 +25,8 @@ const App = () => {
       key={`path-${route.path}-${index}`}
       path={route.path}
       exact={route.exact}
-    >
-      <Component />
-    </Route>
+      element={<Component />}
+    />
   )
 
   const userRoutes = useMemo(
@@ -46,7 +45,7 @@ const App = () => {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DashboardLayout routes={userRoutes.sidebar}>
               <Suspense fallback={<Loader />}>
-                <Switch>{userRoutes.browser.map(renderRoute)}</Switch>
+                <Routes>{userRoutes.browser.map(renderRoute)}</Routes>
               </Suspense>
             </DashboardLayout>
           </LocalizationProvider>
