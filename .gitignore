@@ -14,3 +14,4 @@ build_k8s
 !.yarn/plugins
 !*/.yarn/plugins
 .pnp.*
+.yarnrc.yml
