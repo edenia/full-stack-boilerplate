@@ -20,7 +20,7 @@ services:
       POSTGRES_DB: '${POSTGRES_DB}'
   hapi:
     container_name: 'boilerplate-hapi'
-    image: node:14.2.0
+    image: node:16.13.2-slim
     ports:
       - '9090:9090'
     volumes:
