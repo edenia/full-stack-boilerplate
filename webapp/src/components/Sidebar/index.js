@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { NavLink as RouterNavLink, useHistory } from 'react-router-dom'
+import { NavLink as RouterNavLink, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
@@ -137,7 +137,7 @@ ListItem.propTypes = {
 }
 
 const Sidebar = ({ routes, ...props }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const classes = useStyles()
 
   return (
@@ -146,7 +146,7 @@ const Sidebar = ({ routes, ...props }) => {
         <img
           alt={mainConfig.title}
           src={mainConfig.logo}
-          onClick={() => history.push('/')}
+          onClick={() => navigate('/')}
         />
       </Box>
       <Divider />

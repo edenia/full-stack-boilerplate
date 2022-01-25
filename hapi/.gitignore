@@ -18,6 +18,8 @@ build_*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.yarnrc.yml
+.yarn/
 
 
 *.abi
