@@ -8,5 +8,5 @@ export default useDarkMode =>
   createTheme({
     breakpoints,
     typography,
-    palette: { type: useDarkMode ? 'dark' : 'light', ...palette }
+    palette: { mode: useDarkMode ? 'dark' : 'light', ...palette }
   })
