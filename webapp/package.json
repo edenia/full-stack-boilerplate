@@ -67,6 +67,7 @@
     "@babel/preset-react": "^7.16.7",
     "customize-cra": "^1.0.0",
     "env-cmd": "^10.1.0",
+    "eslint": "^7.11.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-config-standard-react": "^11.0.1",

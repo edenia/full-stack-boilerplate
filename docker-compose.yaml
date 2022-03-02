@@ -67,7 +67,7 @@ services:
       # HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "${HASURA_GRAPHQL_UNAUTHORIZED_ROLE}"
   webapp:
     container_name: 'boilerplate-webapp'
-    image: node:14.2.0
+    image: node:16.14.0-stretch
     stdin_open: true
     ports:
       - '3000:3000'

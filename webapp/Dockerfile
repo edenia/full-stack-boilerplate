@@ -1,4 +1,4 @@
-FROM node:12.16.2-alpine  as build-stage
+FROM node:16.14.0-stretch  as build-stage
 
 ARG react_app_tag
 ARG react_app_name
