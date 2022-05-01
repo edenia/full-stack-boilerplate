@@ -54,7 +54,7 @@ const routes = [
   },
   {
     name: 'telegram',
-    path: 'https://t.me/blockchaincostarica',
+    path: 'https://t.me/eoscr',
     icon: <TelegramIcon />
   },
   {

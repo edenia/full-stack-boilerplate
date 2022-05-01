@@ -89,8 +89,8 @@ deploy-kubernetes: $(K8S_BUILD_DIR)
 	@echo "Creating SSL certificates..."
 	@kubectl create secret tls \
 		tls-secret \
-		--key ./ssl/eosio.cr.priv.key \
-		--cert ./ssl/eosio.cr.crt \
+		--key ./ssl/edenia.cloud.priv.key \
+		--cert ./ssl/edenia.cloud.crt \
 		-n $(NAMESPACE)  || echo "SSL cert already configured.";
 	@echo "Creating configmaps..."
 	@kubectl create configmap -n $(NAMESPACE) \

@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.8'
 services:
   wallet:
     container_name: 'boilerplate-wallet'
@@ -42,7 +42,7 @@ services:
       HAPI_HASURA_ADMIN_SECRET: '${HAPI_HASURA_ADMIN_SECRET}'
   hasura:
     container_name: 'boilerplate-hasura'
-    image: hasura/graphql-engine:v2.4.0-beta.3.cli-migrations-v3
+    image: hasura/graphql-engine:v2.6.0.cli-migrations-v3
     ports:
       - '8080:8080'
     depends_on:
@@ -67,7 +67,7 @@ services:
       # HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "${HASURA_GRAPHQL_UNAUTHORIZED_ROLE}"
   webapp:
     container_name: 'boilerplate-webapp'
-    image: node:16.14.0-stretch
+    image: node:16.14.0-alpine
     stdin_open: true
     ports:
       - '3000:3000'
