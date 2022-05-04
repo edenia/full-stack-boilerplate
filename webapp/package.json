@@ -2,7 +2,7 @@
   "name": "eosioboilerplate",
   "version": "1.0.0",
   "description": "EOSIO Boilerplate WebApp",
-  "repository": "https://github.com/eoscostarica/eosioboilerplate.git",
+  "repository": "https://github.com/eoscostarica/full-stack-boilerplate.git",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
@@ -57,7 +57,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "^4.0.3",
     "subscriptions-transport-ws": "^0.11.0",
-    "ual-anchor": "1.1.4",
+    "ual-anchor": "1.1.6",
     "ual-token-pocket": "^0.3.0"
   },
   "devDependencies": {
