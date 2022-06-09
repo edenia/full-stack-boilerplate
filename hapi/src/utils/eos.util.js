@@ -1,6 +1,6 @@
 const { Api, JsonRpc } = require('eosjs')
 const { JsSignatureProvider } = require('eosjs/dist/eosjs-jssig')
-const fetch = require('node-fetch')
+const { fetch } = require('../mod.cjs')
 const { TextEncoder, TextDecoder } = require('util')
 const EosApi = require('eosjs-api')
 

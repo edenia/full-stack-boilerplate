@@ -1,4 +1,4 @@
-const fetch = require('node-fetch')
+const { fetch } = require('../mod.cjs')
 
 const { eosConfig } = require('../config')
 
