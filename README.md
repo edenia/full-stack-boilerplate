@@ -144,7 +144,7 @@ As a company that delivers EOSIO blockchain-based solutions, we build a template
 
 Please Read EOS Costa Rica's [Open Source Contributing Guidelines](https://developers.eoscostarica.io/docs/open-source-guidelines).
 
-Please report bugs big and small by [opening an issue](https://github.com/eoscostarica/full-stack-boilerplate/issues)
+Please report big and small bugs by [opening an issue](https://github.com/eoscostarica/full-stack-boilerplate/issues)
 
 ## About EOS Costa Rica
 
