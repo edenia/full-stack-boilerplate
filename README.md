@@ -22,6 +22,7 @@ A highly scalable skeleton with best practices, fullstack monorepo containing ou
       - [Hasura GraphQL Server](#hasura-graphql-server)
       - [Hapi REST Server](#hapi-rest-server)
     - [EOSIO Blockchain Technology Integration](#eosio-blockchain-technology-integration)
+- [Contributing](#contributing) 
   - [About EOS Costa Rica](#about-eos-costa-rica)
 
 # Features!
