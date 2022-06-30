@@ -36,7 +36,7 @@ This boilerplate features all the latest technologies and practices in the indus
 
 # Installation
 
-## Before to Start
+## Getting Started
 
 Some things you need before getting started:
 
@@ -139,6 +139,12 @@ We need to handle REST custom requests coming from the Hasura GraphQL server. Fo
 ### EOSIO Blockchain Technology Integration
 
 As a company that delivers EOSIO blockchain-based solutions, we build a template that contains EOSIO integration, specifically [eosjs](https://github.com/EOSIO/eosjs). This allows us to iterate quickly over the more challenging features of our projects.
+
+# Contributing
+
+Please Read EOS Costa Rica's [Open Source Contributing Guidelines](https://developers.eoscostarica.io/docs/open-source-guidelines).
+
+Please report bugs big and small by [opening an issue](https://github.com/eoscostarica/full-stack-boilerplate/issues)
 
 ## About EOS Costa Rica
 
