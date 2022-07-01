@@ -1,5 +1,3 @@
-# EOSCR Full_Stack Boilerplate
-
 <p align="center">
 	<a href="https://eoscostarica.io">
 		<img src="https://github.com/eoscostarica/eos-rate/raw/master/docs/eoscostarica-logo-black.png" width="300">
@@ -8,6 +6,8 @@
 <br/>
 
 ![](https://img.shields.io/github/license/eoscostarica/full-stack-boilerplate) ![](https://img.shields.io/badge/code%20style-standard-brightgreen.svg) ![](https://img.shields.io/badge/%E2%9C%93-collaborative_etiquette-brightgreen.svg) ![](https://img.shields.io/twitter/follow/eoscostarica.svg?style=social&logo=twitter) ![](https://img.shields.io/github/forks/eoscostarica/full-stack-boilerplate?style=social)
+
+# EOSCR Full-Stack Boilerplate
 
 A highly scalable skeleton with best practices, fullstack monorepo containing our front end and backend boilerplates.
 
