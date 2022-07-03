@@ -14,7 +14,7 @@ A highly scalable skeleton with best practices, fullstack monorepo containing ou
 - [EOSCR Boilerplate](#eoscr-boilerplate)
 - [Features](#features)
 - [Installation](#installation)
-  - [Before to Start](#before-to-start)
+  - [Getting Started](#getting-started)
   - [First Time](#first-time)
   - [Quick Start](#quick-start)
 - [File Structure](#file-structure)
