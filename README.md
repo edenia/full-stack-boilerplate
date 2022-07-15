@@ -1,17 +1,17 @@
-<p align="center">
-	<a href="https://eoscostarica.io">
-		<img src="https://github.com/eoscostarica/eos-rate/raw/master/docs/eoscostarica-logo-black.png" width="300">
+<div align="center">
+	<a href="https://edenia.com">
+		<img src="https://raw.githubusercontent.com/eoscostarica/.github/master/.github/workflows/images/eos-costa-rica-logo.png" width="300">
 	</a>
-</p>
-<br/>
 
 ![](https://img.shields.io/github/license/eoscostarica/full-stack-boilerplate) ![](https://img.shields.io/badge/code%20style-standard-brightgreen.svg) ![](https://img.shields.io/badge/%E2%9C%93-collaborative_etiquette-brightgreen.svg) ![](https://img.shields.io/twitter/follow/eoscostarica.svg?style=social&logo=twitter) ![](https://img.shields.io/github/forks/eoscostarica/full-stack-boilerplate?style=social)
+
+</div>
 
 # EOSCR Full-Stack Boilerplate
 
 A highly scalable skeleton with best practices, fullstack monorepo containing our front end and backend boilerplates.
 
-- [EOSCR Boilerplate](#eoscr-boilerplate)
+- [EOSCR Boilerplate](#eoscr-full-stack-boilerplate)
 - [Features](#features)
 - [Installation](#installation)
   - [Getting Started](#getting-started)
@@ -156,10 +156,8 @@ Please report big and small bugs by [opening an issue](https://github.com/eoscos
 
 <p align="center">
 	<a href="https://eoscostarica.io">
-		<img src="https://github.com/eoscostarica/eos-rate/raw/master/docs/eoscostarica-logo-black.png" width="300">
+		<img src="https://raw.githubusercontent.com/eoscostarica/.github/master/.github/workflows/images/eos-costa-rica-logo.png" width="300">
 	</a>
-</p>
-<br/>
 
 EOS Costa Rica is an independently-owned, self-funded, bare-metal Genesis block producer that provides a stable and secure infrastructure for EOSIO blockchains. We support open-source software for our community while offering enterprise solutions and custom smart contract development for our clients.
 
