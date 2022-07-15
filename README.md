@@ -1,5 +1,5 @@
 <div align="center">
-	<a href="https://edenia.com">
+	<a href="https://eoscostarica.io">
 		<img src="https://raw.githubusercontent.com/eoscostarica/.github/master/.github/workflows/images/eos-costa-rica-logo.png" width="300">
 	</a>
 
