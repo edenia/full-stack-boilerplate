@@ -155,13 +155,15 @@ Please report big and small bugs by [opening an issue](https://github.com/eoscos
 ## About EOS Costa Rica
 
 <div align="center">
-	<a href="https://eoscostarica.io">
-		<img src="https://raw.githubusercontent.com/eoscostarica/.github/master/.github/workflows/images/eos-costa-rica-logo.png" width="300">
-	</a>
+
+<a href="https://eoscostarica.io"><img width="300" alt="image" src="https://raw.githubusercontent.com/eoscostarica/.github/master/.github/workflows/images/eos-costa-rica-logo.png"></img></a>
+
+[![Twitter](https://img.shields.io/twitter/follow/EOSCostaRica?style=for-the-badge)](https://twitter.com/EdeniaWeb3)
+[![Discord](https://img.shields.io/discord/946500573677625344?color=black&label=Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/YeGcF6QwhP)
+
 </div>
 
-
-EOS Costa Rica is an independently-owned, self-funded, bare-metal Genesis block producer that provides a stable and secure infrastructure for EOSIO blockchains. We support open-source software for our community while offering enterprise solutions and custom smart contract development for our clients.
+EOS Costa Rica is an independently-owned, self-funded, bare-metal Genesis block producer that provides stable and secure infrastructure for the EOS mainnet. We support open source software for our community while offering enterprise solutions and custom smart contract development for our clients.
 
 [eoscostarica.io](https://eoscostarica.io)
 
