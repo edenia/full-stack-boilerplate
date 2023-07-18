@@ -1,8 +1,8 @@
 {
   "name": "eosioboilerplate",
   "version": "1.0.0",
-  "description": "EOSIO Boilerplate WebApp",
-  "repository": "https://github.com/eoscostarica/full-stack-boilerplate.git",
+  "description": "Edenia Boilerplate WebApp",
+  "repository": "https://github.com/edenia/full-stack-boilerplate.git",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",

@@ -1,8 +1,8 @@
 {
   "name": "eosioboilerplate",
   "version": "1.0.0",
-  "description": "EOSIO Boilerplate WebApp",
-  "repository": "https://github.com/eoscostarica/full-stack-boilerplate.git",
+  "description": "Edenia Boilerplate WebApp",
+  "repository": "https://github.com/edenia/full-stack-boilerplate.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",

@@ -1,8 +1,8 @@
 {
-  "name": "EOSIO Boilerplate",
+  "name": "Edenia Boilerplate",
   "short_name": "Boilerplate",
   "lang": "en",
-  "description": "Basic skeleton for EOS Costa Rica projects",
+  "description": "Basic skeleton for Edenia projects",
   "icons": [
     {
      "src": "\/images\/android-icon-36x36.png",

@@ -32,17 +32,17 @@ const Help = () => {
             <Box className={classes.boxLinks}>
               <GitHubIcon />
               <Link
-                href="https://github.com/eoscostarica"
+                href="https://github.com/edenia"
                 target="_blank"
                 rel="noreferrer"
               >
-                <Typography variant="body1">{t('githubEOSCR')}</Typography>
+                <Typography variant="body1">{t('github')}</Typography>
               </Link>
             </Box>
             <Box className={classes.boxLinks}>
               <TelegramIcon />
               <Link
-                href="https://web.telegram.org/#/eoscr"
+                href="https://t.me/eoscr"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -52,11 +52,11 @@ const Help = () => {
             <Box className={classes.boxLinks}>
               <HttpIcon />
               <Link
-                href="https://eoscostarica.io/"
+                href="https://edenia.com"
                 target="_blank"
                 rel="noreferrer"
               >
-                <Typography variant="body1">{t('websiteEOSCR')}</Typography>
+                <Typography variant="body1">{t('website')}</Typography>
               </Link>
             </Box>
           </Grid>

@@ -6,13 +6,13 @@
     "darkMode": "Dark Mode"
   },
   "routes": {
-    "/>title": "EOSIO Boilerplate",
+    "/>title": "Edenia Boilerplate",
     "/>sidebar": "Home",
     "/>heading": "Welcome",
-    "/about>title": "About | EOSIO Boilerplate",
+    "/about>title": "About | Edenia Boilerplate",
     "/about>sidebar": "About",
     "/about>heading": "About",
-    "/help>title": "Help | EOSIO Boilerplate",
+    "/help>title": "Help | Edenia Boilerplate",
     "/help>sidebar": "Help",
     "/help>heading": "Help",
     "docs": "Docs",
@@ -36,8 +36,8 @@
   "helpRoute": {
     "title": "Thank you for your interest!",
     "paragraph": "This project is still work in progress. Please feel free to leave upgrade suggestions, log bugs, or use the code yourself. You can also find us on Telegram or visit our website.",
-    "githubEOSCR": "EOS Costa Rica GitHub",
+    "github": "GitHub",
     "telegramChannel": "Telegram Channel",
-    "websiteEOSCR": "EOS Costa Rica Website"
+    "website": "Website"
   }
 }
