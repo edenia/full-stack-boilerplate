@@ -1,17 +1,15 @@
 <div align="center">
-	<a href="https://eoscostarica.io">
-		<img src="https://raw.githubusercontent.com/eoscostarica/.github/master/.github/workflows/images/eos-costa-rica-logo.png" width="300">
-	</a>
+<a href="https://edenia.com"><img width="400" alt="image" src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png"></img></a>
 
-![](https://img.shields.io/github/license/eoscostarica/full-stack-boilerplate) ![](https://img.shields.io/badge/code%20style-standard-brightgreen.svg) ![](https://img.shields.io/badge/%E2%9C%93-collaborative_etiquette-brightgreen.svg) ![](https://img.shields.io/twitter/follow/eoscostarica.svg?style=social&logo=twitter) ![](https://img.shields.io/github/forks/eoscostarica/full-stack-boilerplate?style=social)
+![](https://img.shields.io/github/license/edenia/full-stack-boilerplate) ![](https://img.shields.io/badge/code%20style-standard-brightgreen.svg) ![](https://img.shields.io/badge/%E2%9C%93-collaborative_etiquette-brightgreen.svg) ![](https://img.shields.io/twitter/follow/eoscostarica.svg?style=social&logo=twitter) ![](https://img.shields.io/github/forks/edenia/full-stack-boilerplate?style=social)
 
 </div>
 
-# EOSCR Full-Stack Boilerplate
+# Edenia Full-Stack Boilerplate
 
-A highly scalable skeleton with best practices, fullstack monorepo containing our front end and backend boilerplates.
+A highly scalable skeleton with best practices, fullstack monorepo containing both our Front-End and Back-End development frameworks.
 
-- [EOSCR Boilerplate](#eoscr-full-stack-boilerplate)
+- [Edenia Boilerplate](#edenia-full-stack-boilerplate)
 - [Features](#features)
 - [Installation](#installation)
   - [Getting Started](#getting-started)
@@ -26,9 +24,9 @@ A highly scalable skeleton with best practices, fullstack monorepo containing ou
     - [Backend](#backend)
       - [Hasura GraphQL Server](#hasura-graphql-server)
       - [Hapi REST Server](#hapi-rest-server)
-    - [EOSIO Blockchain Technology Integration](#eosio-blockchain-technology-integration)
+    - [Antelope Blockchain Technology Integration](#antelope-blockchain-technology-integration)
 - [Contributing](#contributing) 
-  - [About EOS Costa Rica](#about-eos-costa-rica)
+  - [About Edenia](#about-edenia)
 
 # Features!
 
@@ -38,7 +36,7 @@ This boilerplate features all the latest technologies and practices in the indus
 - Hasura
 - React
 - Kubernetes
-- EOSIO
+- Antelope + EOSIO Blockchain Integration
 
 # Installation
 
@@ -61,7 +59,7 @@ cp .env.example .env
 
 ## Quick Start
 
-1.  Clone this repo using `git clone --depth=1 https://github.com/eoscostarica/full-stack-boilerplate.git <YOUR_PROJECT_NAME>`.
+1.  Clone this repo using `git clone --depth=1 https://github.com/edenia/full-stack-boilerplate.git <YOUR_PROJECT_NAME>`.
 2.  Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>`.
 3.  Run `make run` in order to start the project using docker compose.
 
@@ -125,7 +123,7 @@ Within the download you'll find the following directories and files:
 
 ### Kubernetes Cluster
 
-At EOS Costa Rica, we build software taking into consideration the high availability of the services that can integrate it. For this, we use [Kubernetes](https://kubernetes.io/), which allows isolating modules to reduce the risk of the system collapsing. In the image above, you can take a look at our representation of the architecture we consider to be more suitable for our purposes.
+At Edenia, we build software taking into consideration the high availability of the services that can integrate it. For this, we use [Kubernetes](https://kubernetes.io/), which allows isolating modules to reduce the risk of the system collapsing. In the image above, you can take a look at our representation of the architecture we consider to be more suitable for our purposes.
 
 ### Web Application
 
@@ -142,28 +140,26 @@ Hasura also enables custom REST handling capabilities with the possibility to in
 
 We need to handle REST custom requests coming from the Hasura GraphQL server. For this, we use [hapi.dev](https://hapi.dev/), which is a simple and easy-to-use backend framework.
 
-### EOSIO Blockchain Technology Integration
+### Antelope Blockchain Technology Integration
 
-As a company that delivers EOSIO blockchain-based solutions, we build a template that contains EOSIO integration, specifically [eosjs](https://github.com/EOSIO/eosjs). This allows us to iterate quickly over the more challenging features of our projects.
+As a company that delivers EOSIO / Antelope blockchain-based solutions, we build a template that integrates this blockchain protocol, specifically [eosjs](https://github.com/EOSIO/eosjs). This allows us to iterate quickly over the more challenging features of our projects.
 
 # Contributing
 
 Please Read EOS Costa Rica's [Open Source Contributing Guidelines](https://developers.eoscostarica.io/docs/open-source-guidelines).
 
-Please report big and small bugs by [opening an issue](https://github.com/eoscostarica/full-stack-boilerplate/issues)
+Please report big and small bugs by [opening an issue](https://github.com/edenia/full-stack-boilerplate/issues)
 
-## About EOS Costa Rica
+## About Edenia
 
-<div align="center">
+<span align="center">
 
-<a href="https://eoscostarica.io"><img width="300" alt="image" src="https://raw.githubusercontent.com/eoscostarica/.github/master/.github/workflows/images/eos-costa-rica-logo.png"></img></a>
+<a href="https://edenia.com"><img width="400" alt="image" src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png"></img></a>
 
-[![Twitter](https://img.shields.io/twitter/follow/EOSCostaRica?style=for-the-badge)](https://twitter.com/EdeniaWeb3)
-[![Discord](https://img.shields.io/discord/946500573677625344?color=black&label=Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/YeGcF6QwhP)
+[![Twitter](https://img.shields.io/twitter/follow/EdeniaWeb3?style=for-the-badge)](https://twitter.com/EdeniaWeb3)
+[![Discord](https://img.shields.io/discord/946500573677625344?color=black&label=discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/YeGcF6QwhP)
 
-</div>
+Edenia runs independent blockchain infrastructure and develops web3 solutions. Our team of technology-agnostic builders has been operating since 1987, leveraging the newest technologies to make the internet safer, more efficient, and more transparent.
 
-EOS Costa Rica is an independently-owned, self-funded, bare-metal Genesis block producer that provides stable and secure infrastructure for the EOS mainnet. We support open source software for our community while offering enterprise solutions and custom smart contract development for our clients.
-
-[eoscostarica.io](https://eoscostarica.io)
-
+[edenia.com](https://edenia.com)
+</span>

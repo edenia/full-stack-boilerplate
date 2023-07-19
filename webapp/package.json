@@ -1,8 +1,8 @@
 {
   "name": "eosioboilerplate",
   "version": "2.0.0",
-  "description": "EOSIO Boilerplate WebApp",
-  "repository": "https://github.com/eoscostarica/full-stack-boilerplate.git",
+  "description": "Edenia Boilerplate WebApp",
+  "repository": "https://github.com/edenia/full-stack-boilerplate.git",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.0",
