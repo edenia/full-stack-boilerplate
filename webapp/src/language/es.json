@@ -1,7 +1,9 @@
 {
-  "common": {
-    "login": "Ingresar",
-    "signOut": "Salir",
+  "translations": {
+    "login": "Iniciar sesión",
+    "logout": "Salir",
+    "htmlTitle": "Edenia Web App Boilerplate",
+    "headerTitle": "titulo Secunddario",
     "lightMode": "Modo Claro",
     "darkMode": "Modo Oscuro"
   },

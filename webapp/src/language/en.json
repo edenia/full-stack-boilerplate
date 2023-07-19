@@ -1,7 +1,9 @@
 {
-  "common": {
+  "translations": {
     "login": "Login",
-    "signOut": "Logout",
+    "logout": "Logout",
+    "htmlTitle": "Edenia Web App Boilerplate",
+    "headerTitle": "Secondary Title",
     "lightMode": "Light Mode",
     "darkMode": "Dark Mode"
   },
