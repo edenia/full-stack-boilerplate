@@ -1,7 +1,7 @@
 FROM ubuntu:22.04 as install-stage
 
 ENV WORK_DIR /opt/application
-ENV EOSIO_PACKAGE_URL https://github.com/AntelopeIO/leap/releases/download/v4.0.4/leap_4.0.4-ubuntu20.04_amd64.deb
+ENV EOSIO_PACKAGE_URL https://github.com/AntelopeIO/leap/releases/download/v4.0.4/leap_4.0.4-ubuntu22.04_amd64.deb
 
 
 # Install wget
