@@ -28,8 +28,6 @@ jobs:
             build-docker-images \
             push-docker-images
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           # webapp
           PORT: 80
           REACT_APP_TAG: ${{ github.ref }}
