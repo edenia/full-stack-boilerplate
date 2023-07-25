@@ -61,7 +61,7 @@ webapp:
 		curl -s -o /dev/null -w 'hasura status %{http_code}\n' http://localhost:8080/healthz; \
 		do echo "$(BLUE)webapp |$(RESET) waiting for hasura service"; \
 		sleep 5; done;
-	@cd webapp && yarn && yarn start:local | cat
+	@cd webapp && yarn && yarn dev | cat
 	@echo "done webapp"
 
 stop:
