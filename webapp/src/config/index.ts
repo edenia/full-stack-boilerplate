@@ -1,5 +1,5 @@
-import * as graphqlConfig from './graphql.config'
-import * as walletConfig from './wallet.config'
-import * as mainConfig from './main.config'
-
-export { graphqlConfig, walletConfig, mainConfig }
+export { default as reCaptchaConfig } from './reCaptcha'
+export { default as themeConfig } from './theme'
+export { default as seoConfig } from './seo'
+export { default as i18nConfig } from './i18n'
+export { default as graphqlConfig } from './graphqlConfig'
