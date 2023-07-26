@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { Dispatch } from 'react'
+import { Dispatch } from 'react'
 
 export type Message = {
   autoHide: boolean
