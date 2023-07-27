@@ -38,13 +38,7 @@ ENV GENERATE_SOURCEMAP false
 
 RUN yarn build
 
-FROM nginx:1.17.10-alpine as run-stage
+EXPOSE 3000
 
-COPY --from=build-stage /usr/src/app/.next /usr/share/nginx/html
-COPY --from=build-stage /usr/src/app/compression.conf /etc/nginx/conf.d/compression.conf
-COPY --from=build-stage /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["yarn", "start"]
 
