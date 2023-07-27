@@ -5,7 +5,7 @@ metadata:
 data:
   # webapp
   PORT: '${PORT}'
-  REACT_APP_TTILE: '${REACT_APP_TTILE}'
+  NEXT_PUBLIC_TTILE: '${NEXT_PUBLIC_TTILE}'
 ---
 apiVersion: v1
 kind: ConfigMap
