@@ -20,8 +20,8 @@ build-docker: ./Dockerfile
 	echo "Building containers..."
 	@docker pull $(DOCKER_REGISTRY)/$(IMAGE_NAME_WEBAPP):$(LATEST_TAG) || true
 	@docker build \
-		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME_WEBAPP):$(VERSION) --target run-stage \
-		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME_WEBAPP):$(LATEST_TAG) --target run-stage \
+		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME_WEBAPP):$(VERSION) \
+		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME_WEBAPP):$(LATEST_TAG) \
 	  --build-arg react_app_version="$(REACT_APP_VERSION)" \
 		--build-arg react_app_name="$(REACT_APP_NAME)" \
 		--build-arg react_app_title="$(REACT_APP_TITLE)" \
