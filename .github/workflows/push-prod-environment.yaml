@@ -29,19 +29,19 @@ jobs:
             push-docker-images
         env:
           # webapp
-          PORT: 80
-          REACT_APP_TAG: ${{ github.ref }}
-          REACT_APP_VERSION: ${{ github.ref }}
-          REACT_APP_NAME: 'edenia_boilerplate'
-          REACT_APP_TITLE: 'Full-Stack Boilerplate'
-          REACT_APP_LOGO: 'https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png'
-          REACT_APP_FOOTER_LINKS: '[]'
-          REACT_APP_UAL_APP_NAME: 'Full-Stack Boilerplate'
-          REACT_APP_UAL_API_PROTOCOL: 'https'
-          REACT_APP_UAL_API_HOST: 'jungle.edenia.cloud'
-          REACT_APP_UAL_API_PORT: '443'
-          REACT_APP_UAL_CHAIN_ID: '2a02a0053e5a8cf73a56ba0fda11e4d92e0238a4a2aa74fccf46d5a910746840'
-          REACT_APP_HASURA_URL: ${{ secrets.REACT_APP_HASURA_URL }}
+          PORT: 3000
+          NEXT_PUBLIC_TAG: ${{ github.ref }}
+          NEXT_PUBLIC_VERSION: ${{ github.ref }}
+          NEXT_PUBLIC_NAME: 'edenia_boilerplate'
+          NEXT_PUBLIC_TITLE: 'Full-Stack Boilerplate'
+          NEXT_PUBLIC_LOGO: 'https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png'
+          NEXT_PUBLIC_FOOTER_LINKS: '[]'
+          NEXT_PUBLIC_UAL_APP_NAME: 'Full-Stack Boilerplate'
+          NEXT_PUBLIC_UAL_API_PROTOCOL: 'https'
+          NEXT_PUBLIC_UAL_API_HOST: 'jungle.edenia.cloud'
+          NEXT_PUBLIC_UAL_API_PORT: '443'
+          NEXT_PUBLIC_UAL_CHAIN_ID: '2a02a0053e5a8cf73a56ba0fda11e4d92e0238a4a2aa74fccf46d5a910746840'
+          NEXT_PUBLIC_HASURA_URL: ${{ secrets.NEXT_PUBLIC_HASURA_URL }}
 
       - name: Build kubernetes files
         id: build_kubernetes_files
