@@ -9,7 +9,7 @@ services:
       - ./tmp/wallet/:/opt/application/data/
   postgres:
     container_name: 'postgres'
-    image: postgres:13.6-alpine
+    image: postgres:13.11-alpine
     ports:
       - '5432:5432'
     volumes:
@@ -20,7 +20,7 @@ services:
       POSTGRES_DB: '${POSTGRES_DB}'
   hapi:
     container_name: 'hapi'
-    image: node:16.13.2-slim
+    image: node:16.20.1-slim
     ports:
       - '9090:9090'
     volumes:
@@ -42,7 +42,7 @@ services:
       HAPI_HASURA_ADMIN_SECRET: '${HAPI_HASURA_ADMIN_SECRET}'
   hasura:
     container_name: 'hasura'
-    image: hasura/graphql-engine:v2.6.1.cli-migrations-v3
+    image: hasura/graphql-engine:v2.31.0.cli-migrations-v3
     ports:
       - '8080:8080'
     depends_on:

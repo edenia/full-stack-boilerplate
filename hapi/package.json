@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/boom": "^10.0.0",
-    "@hapi/hapi": "^20.2.1",
+    "@hapi/hapi": "^21.3.2",
     "axios": "^0.27.2",
     "eosjs": "^22.1.0",
     "eosjs-api": "^7.0.4",
