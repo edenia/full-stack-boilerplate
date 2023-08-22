@@ -1,10 +1,10 @@
 'use client'
 
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
+import { useTranslations } from 'next-intl'
 import { gql } from '@apollo/client'
 
-import { useSharedState } from 'app/context'
-import useTranslation from 'app/i18n'
+import { useSharedState } from './context'
 
 const query = gql`
   query Now {
@@ -16,16 +16,14 @@ type testQuery = {
   no_queries_available: string
 }
 
-const Home: React.FC<{ params: { lng: string } }> = ({ params: { lng } }) => {
-  const { t } = useTranslation(lng, 'home')
+const Home: React.FC = () => {
+  const t = useTranslations('IndexPage')
   const { data } = useSuspenseQuery<testQuery>(query)
   const [state] = useSharedState()
 
-  if (!t) return <h1>Loading..</h1>
-
   return (
-    <div data-testid='test-home'>
-      <h1>Home Page</h1>
+    <div style={{ marginTop: 150 }} data-testid='test-home'>
+      <h1>{t('title')}</h1>
       <h4>Test query</h4>
       <span>{data?.no_queries_available || ''}</span>
       <h4>Test State</h4>

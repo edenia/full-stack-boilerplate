@@ -11,14 +11,12 @@ const DynamicContainer = dynamic(() => import('./Container'))
 type LayoutProps = {
   children: any
   isDarkTheme: boolean
-  lng: string
   toggleThemeType(): void
 }
 
 const MainContent: React.FC<LayoutProps> = ({
   children,
   isDarkTheme,
-  lng,
   toggleThemeType
 }) => {
   const classes = useStyles()
@@ -41,13 +39,11 @@ const MainContent: React.FC<LayoutProps> = ({
         anchorEl={anchorEl}
         onclick={closeLoginModal}
         setAnchorEl={setAnchorEl}
-        lng={lng}
       />
       <DynamicContainer onclick={closeLoginModal}>{children}</DynamicContainer>
       <DynamicFooter
         isDarkTheme={isDarkTheme}
         toggleThemeType={toggleThemeType}
-        lng={lng}
       />
     </div>
   )

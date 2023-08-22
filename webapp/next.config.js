@@ -2,13 +2,6 @@
 
 const nextConfig = {
   reactStrictMode: false,
-  experimental: {
-    appDir: true
-  },
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'es']
-  },
   webpack: config => {
     config.resolve.fallback = { fs: false }
 
