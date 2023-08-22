@@ -1,9 +1,7 @@
 import React, { useState, memo } from 'react'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
-import { AppBar, Toolbar, Skeleton } from '@mui/material'
-
-import useTranslation from 'app/i18n'
+import { AppBar, Toolbar } from '@mui/material'
 
 import HeaderDesktopView from './DesktopView'
 import HeaderMobileView from './MobileView'
@@ -12,7 +10,6 @@ import useStyles from './styles'
 
 type HeaderProps = {
   open: boolean
-  lng: string
   onclick(): void
   setOpen(previousOpen: boolean): void
   anchorEl: null | HTMLElement
@@ -24,19 +21,15 @@ const Header: React.FC<HeaderProps> = ({
   setOpen,
   onclick,
   anchorEl,
-  setAnchorEl,
-  lng
+  setAnchorEl
 }) => {
   const classes = useStyles()
-  const { t } = useTranslation(lng, 'common')
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
   const handlerDrawer = () => {
     setIsOpen(!isOpen)
   }
-
-  if (!t) return <Skeleton variant='rounded' height={60} />
 
   return (
     <AppBar className={classes.appBar}>
@@ -45,20 +38,18 @@ const Header: React.FC<HeaderProps> = ({
         onClick={onclick}
       >
         <div className={classes.menuContainer}>
-          <HeaderDesktopView asPath={pathname} lng={lng} />
+          <HeaderDesktopView asPath={pathname} />
           <HeaderMobileView
             open={open}
             setAnchorEl={setAnchorEl}
             setOpen={setOpen}
             anchorEl={anchorEl}
-            lng={lng}
             handlerDrawer={handlerDrawer}
           />
           <DrawerContent
             isOpen={isOpen}
             handlerDrawer={handlerDrawer}
             asPath={pathname}
-            lng={lng}
           />
         </div>
       </Toolbar>
