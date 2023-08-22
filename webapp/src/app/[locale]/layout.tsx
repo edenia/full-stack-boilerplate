@@ -1,27 +1,26 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @next/next/no-page-custom-font */
 'use client'
 
 import { useState, useCallback, useEffect } from 'react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { createTranslator, NextIntlClientProvider } from 'next-intl'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { usePathname } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { DefaultSeo } from 'next-seo'
-import { dir } from 'i18next'
 
 import { seoConfig, themeConfig, i18nConfig } from '../../config'
 import MainContent from './components/Content'
-import { languages } from 'app/i18n/settings'
-import useTranslation from 'app/i18n'
-import { ApolloWrapper } from 'app/lib/apollo-wrapper'
-import { SharedStateProvider } from 'app/context'
+import { ApolloWrapper } from './lib/apollo-wrapper'
+import { SharedStateProvider } from './context'
 
 type LayoutProps = {
   children: React.ReactNode
   params: {
-    lng: string
+    locale: string
   }
 }
 
@@ -30,21 +29,30 @@ interface Languages {
   es: string
 }
 
-export async function generateStaticParams(): Promise<any> {
-  return languages.map(lng => ({ lng }))
+async function getLanguages(locale: string) {
+  try {
+    return (await import(`../../languages/${locale}.json`)).default
+  } catch (error) {
+    notFound()
+  }
+}
+
+export async function generateStaticParams() {
+  return ['en', 'de'].map(locale => ({ locale }))
 }
 
 export default function RootLayout({
   children,
-  params: { lng = 'en' }
-}: LayoutProps): JSX.Element {
+  params: { locale = 'en' }
+}: LayoutProps) {
+  const [languages, setlanguages] = useState(null)
+
   const pathname = usePathname()
   const [metadata, setMetadata] = useState({
     title: 'website boilerplate',
     description: 'website boilerplate page',
     currentRoute: ''
   })
-  const { t } = useTranslation(lng, 'seo')
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false)
 
   const toggleThemeType = useCallback((): void => {
@@ -52,17 +60,31 @@ export default function RootLayout({
   }, [])
 
   useEffect(() => {
-    if (typeof t === 'function' && metadata.currentRoute !== pathname) {
+    const getLngs = async () => {
+      const lgns = await getLanguages(locale)
+
+      setlanguages(lgns)
+    }
+
+    getLngs()
+  }, [locale])
+
+  useEffect(() => {
+    const prepareMetadate = async () => {
+      const t = createTranslator({ locale, messages: languages })
+
       setMetadata({
-        title: t(`${pathname}-metaTitle`),
-        description: t(`${pathname}-metaDescription`),
+        title: t(`Metadata.${pathname}.Title`),
+        description: t(`Metadata.${pathname}.Description`),
         currentRoute: pathname
       })
     }
-  }, [t, pathname, metadata])
+
+    languages && prepareMetadate()
+  }, [languages, locale, pathname])
 
   return (
-    <html lang={lng} dir={dir(lng)}>
+    <html lang={'en'}>
       <DefaultSeo {...seoConfig} />
       <head>
         <title>{metadata.title}</title>
@@ -101,17 +123,22 @@ export default function RootLayout({
               <LocalizationProvider
                 dateAdapter={AdapterDateFns}
                 adapterLocale={
-                  i18nConfig?.dateFnsLocaleMap?.[lng as keyof Languages]
+                  i18nConfig?.dateFnsLocaleMap?.[locale as keyof Languages]
                 }
               >
-                <CssBaseline />
-                <MainContent
-                  isDarkTheme={isDarkTheme}
-                  toggleThemeType={toggleThemeType}
-                  lng={lng}
-                >
-                  {children}
-                </MainContent>
+                {languages ? (
+                  <NextIntlClientProvider locale={locale} messages={languages}>
+                    <CssBaseline />
+                    <MainContent
+                      isDarkTheme={isDarkTheme}
+                      toggleThemeType={toggleThemeType}
+                    >
+                      {children}
+                    </MainContent>
+                  </NextIntlClientProvider>
+                ) : (
+                  <span>loading...</span>
+                )}
               </LocalizationProvider>
             </ThemeProvider>
           </SharedStateProvider>

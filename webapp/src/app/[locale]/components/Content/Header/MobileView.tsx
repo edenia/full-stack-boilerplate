@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
-import { IconButton, Link } from '@mui/material'
+import { IconButton } from '@mui/material'
+import Link from 'next-intl/link'
 
 import Logo from '../../Logo'
 
@@ -13,29 +14,19 @@ type HeaderMobileProps = {
   anchorEl: null | HTMLElement
   setAnchorEl(event: EventTarget & HTMLElement): void
   handlerDrawer: () => void
-  lng: string
 }
 
-const HeaderMobileView: React.FC<HeaderMobileProps> = ({
-  handlerDrawer,
-  lng
-}) => {
+const HeaderMobileView: React.FC<HeaderMobileProps> = ({ handlerDrawer }) => {
   const classes = useMenuStyles()
 
   return (
     <div className={(classes.drawerContainer, classes.drawerShowMobile)}>
-      <Link
-        href='/'
-        aria-label='logo-header'
-        width={160}
-        height={35}
-        display='flex'
-      >
+      <Link href='/' aria-label='logo-header'>
         <Logo width={160} height={35} />
       </Link>
       <div className={classes.leftBox}>
         <div className={classes.languageBox}>
-          <LanguageSelector lng={lng} />
+          <LanguageSelector />
         </div>
         <IconButton
           onClick={handlerDrawer}
