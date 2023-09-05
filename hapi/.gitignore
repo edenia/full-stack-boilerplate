@@ -3,31 +3,9 @@
 # dependencies
 node_modules
 
-# testing
-coverage
-
-# production
-build
-build_*
-
-# misc
-.DS_Store
-.env*
-!.env.example
-
-npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.yarnrc.yml
-.yarn/
-
-
-*.abi
-*.wasm
-*.rej
-
-__docs
-
-.idea/**/*
 
 resources/**/*
+# yarn
+dist

@@ -29,7 +29,7 @@ services:
         source: ./hapi
         target: /app
     working_dir: /app
-    command: bash -c "yarn && yarn watch"
+    command: bash -c "yarn && yarn start:dev"
     environment:
       HAPI_SERVER_PORT: '${HAPI_SERVER_PORT}'
       HAPI_SERVER_ADDRESS: '${HAPI_SERVER_ADDRESS}'
@@ -42,7 +42,7 @@ services:
       HAPI_HASURA_ADMIN_SECRET: '${HAPI_HASURA_ADMIN_SECRET}'
   hasura:
     container_name: 'hasura'
-    image: hasura/graphql-engine:v2.31.0.cli-migrations-v3
+    image: hasura/graphql-engine:v2.33.1.cli-migrations-v3
     ports:
       - '8080:8080'
     depends_on:

@@ -1,16 +1,17 @@
 # ---------- Base ----------
-FROM node:16.20.1-slim as base
+FROM node:16.20.0 as base
 WORKDIR /app
 
 # ---------- Builder ----------
 FROM base AS builder
 COPY package.json yarn.lock ./
 RUN yarn --ignore-optional
-COPY ./src ./src
+COPY ./ ./
+RUN yarn build
 
 # ---------- Release ----------
 FROM base AS release
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/src ./src
+COPY --from=builder /app/dist ./src
 USER node
 CMD ["node", "./src/index.js"]
