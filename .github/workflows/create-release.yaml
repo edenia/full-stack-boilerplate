@@ -1,4 +1,4 @@
-name: Build images from latest master branch
+name: Create Release Tags
 
 on:
   push:
