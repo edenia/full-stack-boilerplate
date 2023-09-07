@@ -1,7 +1,7 @@
-const Hapi = require('@hapi/hapi')
+import Hapi from '@hapi/hapi'
 
-const { serverConfig } = require('./config')
-const routes = require('./routes')
+import routes from './routes'
+import { serverConfig } from './config'
 
 const init = async () => {
   const server = Hapi.server({
@@ -13,8 +13,10 @@ const init = async () => {
     debug: { request: ['handler'] }
   })
 
-  server.route(routes)
-  await server.start()
+  routes(server)
+
+  server.start()
+
   console.log(`🚀 Server ready at ${server.info.uri}`)
   server.table().forEach(route => console.log(`${route.method}\t${route.path}`))
 }

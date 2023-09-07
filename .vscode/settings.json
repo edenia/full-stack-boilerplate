@@ -6,6 +6,5 @@
   "search.exclude": {
     "**/.yarn": true,
     "**/.pnp.*": true
-  },
-  "prettier.prettierPath": "./webapp/.yarn/sdks/prettier/index.js"
+  }
 }
