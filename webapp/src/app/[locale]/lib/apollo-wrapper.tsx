@@ -10,7 +10,7 @@ import {
 } from '@apollo/experimental-nextjs-app-support/ssr'
 import decodeJWT from 'jwt-decode'
 
-import { graphqlConfig } from 'config'
+import { graphqlConfig } from '../../../config'
 
 function makeClient() {
   const httpLink = new HttpLink({
