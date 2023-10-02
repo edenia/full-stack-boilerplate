@@ -1,26 +1,6 @@
-# ---------- Base ----------
-FROM node:18.18.0-alpine3.18 as base
-WORKDIR /usr/src/app
+FROM node:18-alpine AS base
 
-# ---------- Builder ----------
-FROM base AS builder
-
-COPY package.json .
-COPY yarn*.lock .
-
-RUN yarn --frozen-lockfile --production
-
-COPY . .
-
-ENV GENERATE_SOURCEMAP false
-
-RUN yarn build
-
-# ---------- Release ----------
-FROM base as release
-COPY --from=builder /usr/src/app/package.json ./package.json
-COPY --from=builder /usr/src/app/node_modules ./node_modules
-COPY --from=builder /usr/src/app/.next ./.next
+WORKDIR /app
 
 ARG next_public_tag
 ARG next_public_name
@@ -46,7 +26,42 @@ ENV NEXT_PUBLIC_UAL_API_PORT $next_public_ual_api_port
 ENV NEXT_PUBLIC_UAL_CHAIN_ID $next_public_ual_chain_id
 ENV NEXT_PUBLIC_HASURA_URL $next_public_hasura_url
 
+# ---------- Deps Installer ----------
+FROM base AS deps
+
+COPY package.json yarn.lock* ./
+RUN \
+  if [ -f yarn.lock ]; then yarn --frozen-lockfile --production; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
+
+
+# ---------- Builder -----------------
+FROM base AS builder
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+RUN yarn build
+
+# ---------- Release -----------------
+FROM base AS runner
+
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
 EXPOSE 3000
 
-CMD ["yarn", "start"]
-
+CMD ["node", "server.js"]
