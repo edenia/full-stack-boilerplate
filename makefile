@@ -8,11 +8,11 @@ K8S_BUILD_DIR ?= ./build_k8s
 K8S_FILES := $(shell find ./kubernetes -name '*.yaml' | sed 's:./kubernetes/::g')
 
 run:
-	make -B postgres
-	make -B wallet
+	# make -B postgres
+	# make -B wallet
 	make -B hapi
-	make -B hasura
-	make -B -j 3 hapi-logs hasura-cli webapp
+	# make -B hasura
+	make -B -j 3 hapi-logs
 
 postgres:
 	@docker-compose stop postgres
