@@ -1,6 +1,15 @@
 'use client'
 
-import React, { createContext, useReducer, useMemo, useContext } from 'react'
+import React, {
+  createContext,
+  useReducer,
+  useMemo,
+  useContext,
+  useEffect
+} from 'react'
+import { SessionKit } from '@wharfkit/session'
+import { WebRenderer } from '@wharfkit/web-renderer'
+import { WalletPluginAnchor } from '@wharfkit/wallet-plugin-anchor'
 
 import {
   Context,
@@ -14,7 +23,36 @@ const SharedStateContext = createContext<Context | null>({} as Context)
 const initialValue: State = {
   useDarkMode: false,
   message: undefined,
-  isLogout: false
+  isLogout: false,
+  user: null
+}
+
+const args = {
+  appName: 'myapp',
+  chains: [
+    {
+      id: '73e4385a2708e6d7048834fbc1079f2fabb17b3c125b146af438971e90716c4d',
+      url: 'http://jungle4.greymass.com'
+    }
+  ],
+  ui: new WebRenderer(),
+  walletPlugins: [new WalletPluginAnchor()]
+}
+
+const options = {}
+const sessionKit = new SessionKit(args, options)
+
+const loginWallet = async (restoreSession = false) => {
+  if (restoreSession) {
+    const activeSessions = await sessionKit.getSessions()
+
+    // be default return the first active session in the list
+    return activeSessions.length > 0 ? await sessionKit.restore() : null
+  }
+
+  const login = await sessionKit.login()
+
+  return login.session
 }
 
 const sharedStateReducer = (state: State, action: Action): State => {
@@ -41,9 +79,14 @@ const sharedStateReducer = (state: State, action: Action): State => {
         message: undefined
       }
 
+    case 'login':
+      return { ...state, user: action.payload.session }
+
     case 'logout':
       localStorage.removeItem('token')
       localStorage.removeItem('refreshToken')
+
+      sessionKit.logout()
 
       return { ...state }
 
@@ -59,13 +102,27 @@ export const SharedStateProvider: React.FC<{ children: React.ReactNode }> = ({
   const [state, dispatch] = useReducer(sharedStateReducer, {
     ...initialValue
   })
-  const value = useMemo(
-    () => ({
-      state,
-      dispatch
-    }),
-    [state]
-  )
+  const value = useMemo(() => ({ state, dispatch }), [state])
+
+  useEffect(() => {
+    const restoreSession = async () => {
+      try {
+        const session = await loginWallet(true)
+
+        console.log('Restored session: ', session?.actor.toString())
+
+        dispatch({
+          type: 'login',
+          payload: { session }
+        })
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        console.error(error)
+      }
+    }
+
+    restoreSession()
+  }, [])
 
   return (
     <SharedStateContext.Provider value={value}>
@@ -91,5 +148,22 @@ export const useSharedState = (): [State, SharedStateCallbacks] => {
 
   const hideMessage = () => dispatch({ type: 'hideMessage' })
 
-  return [state, { setSwitchMode, showMessage, hideMessage }]
+  const login = async () => {
+    try {
+      const session = await loginWallet(false)
+
+      console.log('Logged in: ', session?.actor.toString())
+
+      if (!session) return
+
+      dispatch({
+        type: 'login',
+        payload: { session }
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return [state, { setSwitchMode, showMessage, hideMessage, login }]
 }

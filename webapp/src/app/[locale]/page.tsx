@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useQuery } from '@apollo/experimental-nextjs-app-support/ssr'
 import { useTranslations } from 'next-intl'
 import { gql } from '@apollo/client'
@@ -19,7 +20,11 @@ type testQuery = {
 const Home: React.FC = () => {
   const t = useTranslations('IndexPage')
   const { data } = useQuery<testQuery>(query)
-  const [state] = useSharedState()
+  const [state, { login }] = useSharedState()
+
+  useEffect(() => {
+    login()
+  }, [])
 
   return (
     <div style={{ marginTop: 150 }} data-testid='test-home'>
