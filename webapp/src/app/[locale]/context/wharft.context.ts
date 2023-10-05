@@ -4,8 +4,8 @@ import { WalletPluginAnchor } from '@wharfkit/wallet-plugin-anchor'
 
 import { mainConfig } from '../../../config'
 
-class WalletInstance {
-  private static instance: WalletInstance
+class Wallet {
+  private static instance: Wallet
   private sessionKit: SessionKit
 
   private constructor() {
@@ -20,12 +20,12 @@ class WalletInstance {
     this.sessionKit = new SessionKit(args, options)
   }
 
-  public static getInstance(): WalletInstance {
-    if (!WalletInstance.instance) {
-      WalletInstance.instance = new WalletInstance()
+  public static getInstance(): Wallet {
+    if (!Wallet.instance) {
+      Wallet.instance = new Wallet()
     }
 
-    return WalletInstance.instance
+    return Wallet.instance
   }
 
   async loginWallet(restoreSession = false) {
@@ -46,4 +46,4 @@ class WalletInstance {
   }
 }
 
-export { WalletInstance }
+export { Wallet }

@@ -15,7 +15,7 @@ import {
   SharedStateCallbacks,
   Message
 } from './context-types'
-import { WalletInstance } from './wharft.context'
+import { Wallet } from './wharft.context'
 
 const SharedStateContext = createContext<Context | null>({} as Context)
 const initialValue: State = {
@@ -56,7 +56,7 @@ const sharedStateReducer = (state: State, action: Action): State => {
       localStorage.removeItem('token')
       localStorage.removeItem('refreshToken')
 
-      WalletInstance.getInstance().logoutWallet()
+      Wallet.getInstance().logoutWallet()
 
       return { ...state, user: null }
 
@@ -77,7 +77,7 @@ export const SharedStateProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const restoreSession = async () => {
       try {
-        const session = await WalletInstance.getInstance().loginWallet(true)
+        const session = await Wallet.getInstance().loginWallet(true)
 
         dispatch({
           type: 'login',
@@ -118,7 +118,7 @@ export const useSharedState = (): [State, SharedStateCallbacks] => {
 
   const login = async () => {
     try {
-      const session = await WalletInstance.getInstance().loginWallet(false)
+      const session = await Wallet.getInstance().loginWallet(false)
 
       if (!session) return
 
