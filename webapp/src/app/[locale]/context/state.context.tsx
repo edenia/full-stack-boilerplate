@@ -79,8 +79,6 @@ export const SharedStateProvider: React.FC<{ children: React.ReactNode }> = ({
       try {
         const session = await WalletInstance.getInstance().loginWallet(true)
 
-        console.log('Restored session: ', session?.actor.toString())
-
         dispatch({
           type: 'login',
           payload: { session }
