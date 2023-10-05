@@ -1,8 +1,9 @@
 import React, { memo } from 'react'
 import { List, Drawer } from '@mui/material'
 
-import useDrawerStyles from './DrawerStyles'
 import Login from '../Login'
+
+import useDrawerStyles from './DrawerStyles'
 
 type DrawerContentProps = {
   isOpen: boolean
