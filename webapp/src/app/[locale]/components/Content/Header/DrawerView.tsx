@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { List, Drawer } from '@mui/material'
 
 import useDrawerStyles from './DrawerStyles'
+import Login from '../Login'
 
 type DrawerContentProps = {
   isOpen: boolean
@@ -23,7 +24,9 @@ const DrawerContent: React.FC<DrawerContentProps> = ({
       onClose={handlerDrawer}
     >
       <div className={classes.drawerContent}>
-        <List></List>
+        <List>
+          <Login />
+        </List>
       </div>
     </Drawer>
   )

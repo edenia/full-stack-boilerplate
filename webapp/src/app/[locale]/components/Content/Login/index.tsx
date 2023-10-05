@@ -12,11 +12,22 @@ const Login = () => {
   return (
     <div>
       {!state?.user ? (
-        <Button id='basic-button' aria-haspopup='true' onClick={login}>
-          <FingerprintIcon sx={{ color: 'white' }} />
+        <Button
+          id='basic-button'
+          aria-haspopup='true'
+          onClick={login}
+          sx={{ color: 'white' }}
+          endIcon={<FingerprintIcon />}
+        >
+          Login
         </Button>
       ) : (
-        <Button id='basic-button' aria-haspopup='true' onClick={logout}>
+        <Button
+          id='basic-button'
+          aria-haspopup='true'
+          onClick={logout}
+          sx={{ color: 'white' }}
+        >
           {state?.user?.actor.toString()}
         </Button>
       )}

@@ -8,14 +8,6 @@ const Styles = makeStyles(theme => ({
       marginRight: '0px'
     }
   },
-  languageLabel: {
-    fontSize: '16px',
-    color: theme.palette.common.white,
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block'
-    }
-  },
   button: {
     '& .MuiButton-root': {
       minWidth: '30px'
