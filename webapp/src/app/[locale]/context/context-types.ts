@@ -30,6 +30,7 @@ export interface SharedStateCallbacks {
   showMessage: (payload: Message) => void
   hideMessage: () => void
   login: () => void
+  logout: () => void
 }
 
 export interface Action {

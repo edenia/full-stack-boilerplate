@@ -7,9 +7,6 @@ import React, {
   useContext,
   useEffect
 } from 'react'
-import { SessionKit } from '@wharfkit/session'
-import { WebRenderer } from '@wharfkit/web-renderer'
-import { WalletPluginAnchor } from '@wharfkit/wallet-plugin-anchor'
 
 import {
   Context,
@@ -18,6 +15,7 @@ import {
   SharedStateCallbacks,
   Message
 } from './context-types'
+import { WalletInstance } from './wharft.context'
 
 const SharedStateContext = createContext<Context | null>({} as Context)
 const initialValue: State = {
@@ -25,34 +23,6 @@ const initialValue: State = {
   message: undefined,
   isLogout: false,
   user: null
-}
-
-const args = {
-  appName: 'myapp',
-  chains: [
-    {
-      id: '73e4385a2708e6d7048834fbc1079f2fabb17b3c125b146af438971e90716c4d',
-      url: 'http://jungle4.greymass.com'
-    }
-  ],
-  ui: new WebRenderer(),
-  walletPlugins: [new WalletPluginAnchor()]
-}
-
-const options = {}
-const sessionKit = new SessionKit(args, options)
-
-const loginWallet = async (restoreSession = false) => {
-  if (restoreSession) {
-    const activeSessions = await sessionKit.getSessions()
-
-    // be default return the first active session in the list
-    return activeSessions.length > 0 ? await sessionKit.restore() : null
-  }
-
-  const login = await sessionKit.login()
-
-  return login.session
 }
 
 const sharedStateReducer = (state: State, action: Action): State => {
@@ -86,9 +56,9 @@ const sharedStateReducer = (state: State, action: Action): State => {
       localStorage.removeItem('token')
       localStorage.removeItem('refreshToken')
 
-      sessionKit.logout()
+      WalletInstance.getInstance().logoutWallet()
 
-      return { ...state }
+      return { ...state, user: null }
 
     default: {
       throw new Error(`Unsupported action type: ${action.type}`)
@@ -107,7 +77,7 @@ export const SharedStateProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const restoreSession = async () => {
       try {
-        const session = await loginWallet(true)
+        const session = await WalletInstance.getInstance().loginWallet(true)
 
         console.log('Restored session: ', session?.actor.toString())
 
@@ -150,9 +120,7 @@ export const useSharedState = (): [State, SharedStateCallbacks] => {
 
   const login = async () => {
     try {
-      const session = await loginWallet(false)
-
-      console.log('Logged in: ', session?.actor.toString())
+      const session = await WalletInstance.getInstance().loginWallet(false)
 
       if (!session) return
 
@@ -161,9 +129,17 @@ export const useSharedState = (): [State, SharedStateCallbacks] => {
         payload: { session }
       })
     } catch (error) {
-      console.error(error)
+      console.error('error', error)
     }
   }
 
-  return [state, { setSwitchMode, showMessage, hideMessage, login }]
+  const logout = async () => {
+    try {
+      dispatch({ type: 'logout' })
+    } catch (error) {
+      console.error('error', error)
+    }
+  }
+
+  return [state, { setSwitchMode, showMessage, hideMessage, login, logout }]
 }

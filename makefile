@@ -19,11 +19,13 @@ postgres:
 	@docker-compose up -d --build postgres
 	@echo "done postgres"
 
+.PHONY: wallet
 wallet:
 	@docker-compose stop wallet
 	@docker-compose up -d --build wallet
 	@echo "done wallet"
 
+.PHONY: hapi
 hapi:
 	@docker-compose stop hapi
 	@docker-compose up -d --build hapi
@@ -32,6 +34,7 @@ hapi:
 hapi-logs:
 	@docker-compose logs -f hapi
 
+.PHONY: hasura
 hasura:
 	$(eval -include .env)
 	@until \
@@ -55,6 +58,7 @@ hasura-cli:
 	@cd hasura && hasura seeds apply --admin-secret $(HASURA_GRAPHQL_ADMIN_SECRET) --all-databases && echo "success!" || echo "failure!";
 	@cd hasura && hasura console --endpoint http://localhost:8080 --skip-update-check --no-browser --admin-secret $(HASURA_GRAPHQL_ADMIN_SECRET);
 
+.PHONY: webapp
 webapp:
 	$(eval -include .env)
 	@until \

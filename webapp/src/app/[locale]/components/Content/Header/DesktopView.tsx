@@ -4,6 +4,7 @@ import { Typography } from '@mui/material'
 import Link from 'next-intl/link'
 
 import LanguageSelector from '../LanguageSelector'
+import Login from '../Login'
 import Logo from '../../Logo'
 
 import useMenuStyles from './MenuStyles'
@@ -39,6 +40,7 @@ const HeaderDesktopView: React.FC<HeaderDesktopProps> = ({ asPath }) => {
           </Link>
         </div>
         <LanguageSelector />
+        <Login />
       </div>
     </div>
   )
