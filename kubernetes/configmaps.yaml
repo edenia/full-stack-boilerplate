@@ -5,7 +5,7 @@ metadata:
 data:
   # webapp
   PORT: "${PORT}"
-  NEXT_PUBLIC_TTILE: "${NEXT_PUBLIC_TTILE}"
+  NEXT_PUBLIC_TITLE: "${NEXT_PUBLIC_TITLE}"
 ---
 apiVersion: v1
 kind: ConfigMap

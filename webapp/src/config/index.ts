@@ -1,3 +1,4 @@
+export { default as mainConfig } from './main'
 export { default as reCaptchaConfig } from './reCaptcha'
 export { default as themeConfig } from './theme'
 export { default as seoConfig } from './seo'

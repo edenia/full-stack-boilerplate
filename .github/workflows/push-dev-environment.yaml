@@ -35,11 +35,8 @@ jobs:
           NEXT_PUBLIC_TITLE: "Fullstack Boilerplate"
           NEXT_PUBLIC_LOGO: "https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png"
           NEXT_PUBLIC_FOOTER_LINKS: "[]"
-          NEXT_PUBLIC_UAL_APP_NAME: "Full-Stack Boilerplate"
-          NEXT_PUBLIC_UAL_API_PROTOCOL: "https"
-          NEXT_PUBLIC_UAL_API_HOST: "boilerplate.edenia.cloud"
-          NEXT_PUBLIC_UAL_API_PORT: "443"
-          NEXT_PUBLIC_UAL_CHAIN_ID: "2a02a0053e5a8cf73a56ba0fda11e4d92e0238a4a2aa74fccf46d5a910746840"
+          NEXT_PUBLIC_NETWORK_CHAIN_INDEX: "Jungle4"
+          NEXT_PUBLIC_CUSTOM_NETWORK_CHAIN: "{}"
           NEXT_PUBLIC_HASURA_URL: "https://graphql-boilerplate.edenia.cloud/v1/graphql"
 
       - name: Build kubernetes files
@@ -61,7 +58,7 @@ jobs:
           HAPI_SERVER_PORT: 9090
           HAPI_SERVER_ADDRESS: 0.0.0.0
           HAPI_NETWORK_CHAIN_INDEX: "Jungle4" # 'EOS' | 'FIO' | 'FIOTestnet' | 'Jungle4' | 'KylinTestnet' | 'Libre' | 'LibreTestnet' | 'Proton' | 'ProtonTestnet' | 'Telos' | 'TelosTestnet' | 'WAX' | 'WAXTestnet' | 'UX';
-          HAPI_CUSTOM_NETWORK_CHAIN: {}
+          HAPI_CUSTOM_NETWORK_CHAIN: "{}"
           HAPI_NETWORK_BASE_ACCOUNT: ${{ secrets.HAPI_NETWORK_BASE_ACCOUNT }}
           HAPI_NETWORK_BASE_PASSWORD: ${{ secrets.HAPI_NETWORK_BASE_PASSWORD }}
           HAPI_NETWORK_WALLET_URL: ${{ secrets.HAPI_NETWORK_WALLET }}

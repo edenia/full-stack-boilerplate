@@ -1,6 +1,8 @@
-import { SessionKit, Chains } from '@wharfkit/session'
+import { SessionKit } from '@wharfkit/session'
 import { WebRenderer } from '@wharfkit/web-renderer'
 import { WalletPluginAnchor } from '@wharfkit/wallet-plugin-anchor'
+
+import { mainConfig } from '../../../config'
 
 class WalletInstance {
   private static instance: WalletInstance
@@ -8,8 +10,8 @@ class WalletInstance {
 
   private constructor() {
     const args = {
-      appName: 'myapp',
-      chains: [Chains.Jungle4],
+      appName: mainConfig.name,
+      chains: [mainConfig.chain],
       ui: new WebRenderer(),
       walletPlugins: [new WalletPluginAnchor()]
     }
