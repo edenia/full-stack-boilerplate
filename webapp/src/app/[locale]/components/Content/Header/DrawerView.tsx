@@ -1,6 +1,8 @@
 import React, { memo } from 'react'
 import { List, Drawer } from '@mui/material'
 
+import Login from '../Login'
+
 import useDrawerStyles from './DrawerStyles'
 
 type DrawerContentProps = {
@@ -23,7 +25,9 @@ const DrawerContent: React.FC<DrawerContentProps> = ({
       onClose={handlerDrawer}
     >
       <div className={classes.drawerContent}>
-        <List></List>
+        <List>
+          <Login />
+        </List>
       </div>
     </Drawer>
   )

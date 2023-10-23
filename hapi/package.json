@@ -1,6 +1,9 @@
 {
   "name": "eosioboilerplate",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=18"
+  },
   "description": "Edenia Boilerplate WebApp",
   "repository": "https://github.com/edenia/full-stack-boilerplate.git",
   "license": "MIT",
@@ -19,6 +22,9 @@
   "dependencies": {
     "@hapi/boom": "^10.0.0",
     "@hapi/hapi": "^21.3.2",
+    "@wharfkit/common": "^1.1.0",
+    "@wharfkit/session": "^1.0.0",
+    "@wharfkit/wallet-plugin-privatekey": "^1.0.0",
     "axios": "^1.5.1",
     "eosjs": "^22.1.0",
     "eosjs-api": "^7.0.4",
@@ -28,7 +34,7 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "@types/node": "^20.7.0",
+    "@types/node": "^20.7.2",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "eslint": "^8.50.0",

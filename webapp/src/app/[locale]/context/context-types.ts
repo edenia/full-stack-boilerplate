@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch } from 'react'
+import { Session } from '@wharfkit/session'
 
 export type Message = {
   autoHide: boolean
@@ -21,12 +22,15 @@ export interface State {
   useDarkMode: boolean
   message?: Message
   isLogout: boolean
+  user: Session | null
 }
 
 export interface SharedStateCallbacks {
   setSwitchMode: (payload: boolean) => void
   showMessage: (payload: Message) => void
   hideMessage: () => void
+  login: () => void
+  logout: () => void
 }
 
 export interface Action {

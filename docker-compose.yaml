@@ -20,7 +20,7 @@ services:
       POSTGRES_DB: "${POSTGRES_DB}"
   hapi:
     container_name: "hapi"
-    image: node:16.20.2
+    image: node:18.18.0
     ports:
       - "9090:9090"
     volumes:
@@ -32,8 +32,8 @@ services:
     environment:
       HAPI_SERVER_PORT: "${HAPI_SERVER_PORT}"
       HAPI_SERVER_ADDRESS: "${HAPI_SERVER_ADDRESS}"
-      HAPI_NETWORK_API: "${HAPI_NETWORK_API}"
-      HAPI_NETWORK_CHAIN_ID: "${HAPI_NETWORK_CHAIN_ID}"
+      HAPI_NETWORK_CHAIN_INDEX: "${HAPI_NETWORK_CHAIN_INDEX}"
+      HAPI_CUSTOM_NETWORK_CHAIN: "${HAPI_CUSTOM_NETWORK_CHAIN}"
       HAPI_NETWORK_BASE_ACCOUNT: "${HAPI_NETWORK_BASE_ACCOUNT}"
       HAPI_NETWORK_BASE_PASSWORD: "${HAPI_NETWORK_BASE_PASSWORD}"
       HAPI_NETWORK_WALLET_URL: "${HAPI_NETWORK_WALLET_URL}"
@@ -61,9 +61,8 @@ services:
       HASURA_GRAPHQL_DEV_MODE: "true"
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_ENABLE_LOGGING: "true"
-      # disabled security for local development
-      # HASURA_GRAPHQL_ADMIN_SECRET: "${HASURA_GRAPHQL_ADMIN_SECRET}"
-      # HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "${HASURA_GRAPHQL_UNAUTHORIZED_ROLE}"
+      HASURA_GRAPHQL_ADMIN_SECRET: "${HASURA_GRAPHQL_ADMIN_SECRET}"
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "${HASURA_GRAPHQL_UNAUTHORIZED_ROLE}"
   webapp:
     container_name: "webapp"
     image: node:16.14.0-alpine

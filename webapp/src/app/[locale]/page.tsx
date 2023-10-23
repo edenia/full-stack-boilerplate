@@ -1,6 +1,6 @@
 'use client'
 
-import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
+import { useQuery } from '@apollo/experimental-nextjs-app-support/ssr'
 import { useTranslations } from 'next-intl'
 import { gql } from '@apollo/client'
 
@@ -18,7 +18,7 @@ type testQuery = {
 
 const Home: React.FC = () => {
   const t = useTranslations('IndexPage')
-  const { data } = useSuspenseQuery<testQuery>(query)
+  const { data } = useQuery<testQuery>(query)
   const [state] = useSharedState()
 
   return (

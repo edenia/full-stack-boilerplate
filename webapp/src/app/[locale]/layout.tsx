@@ -37,10 +37,6 @@ async function getLanguages(locale: string) {
   }
 }
 
-export async function generateStaticParams() {
-  return ['en', 'de'].map(locale => ({ locale }))
-}
-
 export default function RootLayout({
   children,
   params: { locale = 'en' }

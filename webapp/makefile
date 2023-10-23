@@ -27,11 +27,8 @@ build-docker: ./Dockerfile
 		--build-arg next_public_title="$(NEXT_PUBLIC_TITLE)" \
 		--build-arg next_public_logo="$(NEXT_PUBLIC_LOGO)" \
 		--build-arg next_public_footer_links="$(NEXT_PUBLIC_FOOTER_LINKS)" \
-		--build-arg next_public_ual_app_name="$(NEXT_PUBLIC_UAL_APP_NAME)" \
-		--build-arg next_public_ual_api_protocol="$(NEXT_PUBLIC_UAL_API_PROTOCOL)" \
-		--build-arg next_public_ual_api_host="$(NEXT_PUBLIC_UAL_API_HOST)" \
-		--build-arg next_public_ual_api_port="$(NEXT_PUBLIC_UAL_API_PORT)" \
-		--build-arg next_public_ual_chain_id="$(NEXT_PUBLIC_UAL_CHAIN_ID)" \
+		--build-arg next_public_network_chain_index="$(NEXT_PUBLIC_NETWORK_CHAIN_INDEX)" \
+		--build-arg next_public_custom_network_chain="$(NEXT_PUBLIC_CUSTOM_NETWORK_CHAIN)" \
 		--build-arg next_public_hasura_url="$(NEXT_PUBLIC_HASURA_URL)" \
 		.
 
